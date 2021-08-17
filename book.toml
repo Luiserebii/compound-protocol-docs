@@ -1,0 +1,6 @@
+[book]
+authors = ["Luiserebii"]
+language = "en"
+multilingual = false
+src = "src"
+title = "A Thorough Guide to Deploying Compound Protocol"
