@@ -1,3 +1,5 @@
 # Summary
 
-- [Chapter 1](./chapter_1.md)
+- [Introduction](./intro.md)
+- [Building Compound Protocol](./build-compound.md)
+- [Deploying Compound Protocol](./deploy-compound.md)
