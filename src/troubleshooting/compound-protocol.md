@@ -1,8 +1,6 @@
-# Troubleshooting
+# compound-protocol
 
-## compound-protocol
-
-### `Unknown option: p`
+## `Unknown option: p`
 
 When running one of the package scripts, like `yarn test`, the output errors and stops, displaying:
 
@@ -19,7 +17,7 @@ As of the commit written to this guide, this fix has been merged as of [eb7a6c9]
 
 To fix this error which is relevant to a newer version of `shasum`, make the changes to the files described in this pull request: [https://github.com/compound-finance/compound-protocol/pull/80/files](https://github.com/compound-finance/compound-protocol/pull/80/files).
 
-### `Error: Source file requires different compiler version (current compiler is x.x.x+commit.xxxxxxxx.xxx.xxx)`
+## `Error: Source file requires different compiler version (current compiler is x.x.x+commit.xxxxxxxx.xxx.xxx)`
 
 `solc` v0.5.16+ is required to compile the current smart contracts. The solution is to install that version of `solc` to your computer. To install, run:
 
@@ -28,7 +26,7 @@ sudo wget https://github.com/ethereum/solidity/releases/download/v0.5.16/solc-st
 sudo chmod +x /usr/local/bin/solc
 ```
 
-### `TypeError: Object.fromEntries is not a function`
+## `TypeError: Object.fromEntries is not a function`
 
 If you're getting this error, you are likely on an older version of node (check `node -v`). Chances are, you have installed node from the `apt` package manager, which installs Node 10.x. Due to the requirement of a version of Node below 14+ for `compound-eureka`, I recommend that you install Node 13.x. To install, simply run:
 
@@ -37,7 +35,7 @@ curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-### `../libusb/libusb/os/linux_udev.c:40:10: fatal error: libudev.h: No such file or directory`
+## `../libusb/libusb/os/linux_udev.c:40:10: fatal error: libudev.h: No such file or directory`
 
 This error may appear when installing packages in the initial setup phase. The full error output may look like:
 
@@ -193,38 +191,7 @@ sudo apt-get install -y libusb-1.0-0-dev libudev-dev
 
 **NOTE**: If you have run a command that invokes this error, it is expected for the command to display this error at least once after installing, so don't worry if you see it again! Simply try the command again, and it should run successfully.
 
-### `Error: Callback was already called`
+## `Error: Callback was already called`
 
 This error occurs with Node 14+. To solve, install an earlier version of Node, preferably Node 13.x. (See above for installing Node 13.x).
-
-## compound-eureka
-
-### `Transaction timeout`
-
-This can occur if the transaction fails to confirm on time during the script. To prevent this, you can increase the Gwei manually (see file **do proper linking for this**)
-
-### General Solution
-
-Any other issues can be fixed by cleaning the repo of the state file. For example, to clean the deployment state for Ropsten, run:
-```sh
-yarn eureka clean -n ropsten -c config/*.js
-```
-
-**NOTE**: Why don't we add the `-b` switch if the `compound-eureka` documentation includes it?
-
-The answer: if we look at what `yarn eureka clean` runs, we see that the `-b` switch is not read at all. Following the chain of execution, within `package.json`, lines 6-9:
-```js
-  "scripts": {
-    "eureka": "node --experimental-vm-modules --unhandled-rejections=strict node_modules/@compound-finance/eureka/src/cli.mjs",
-    "import-contract": "node --experimental-vm-modules --unhandled-rejections=strict ./import_contract.mjs"
-  },
-```
-And then, into `node_modules/@compound-finance/eureka/src/cli.mjs`, lines 40-43:
-```js
-    .command('clean', 'deletes Eureka backend state', (yargs) => {
-      }, async (argv) => {
-        cleanBackend(argv.network, array(argv.config_file), argv.yes, argv.verbose, argv.jsonrpc);
-      })
-```
-From this, we can see that only the network (`-n`) and config (`-c`) switches are really read.
 
