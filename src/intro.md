@@ -1,5 +1,7 @@
 # Introduction
 
+![Compound Logo](./img/compound-comp-logo.png)
+
 This is a thorough guide to everything related to deploying Compound protocol to an Ethereum network, such as a public testnet (e.g. Rinkeby, Ropsten). Compiling the Compound protocol contracts, deploying the Compound protocol contracts, and any information that is not obvious to at first glance to a newcomer to the Compound protocol repositories will be addressed in this guide.
 
 This guide is written for the [`compound-protocol`](https://github.com/compound-finance/compound-protocol) and the [`compound-eureka`](https://github.com/compound-finance/compound-eureka) GitHub repositories' master branches as of writing. Therefore, we will be referring to the following commits for each repository:
