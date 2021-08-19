@@ -12,7 +12,7 @@ Typically when it breaks like this, you are given the option to save to state. Y
 
 This is unfortunately a bug in Eureka that has to be worked around. [Setting the gas price manually](../deploy-compound.md#increasing-gas-price) is one way to attempt to avoid this error. 
 
-If the recurrent breaking is too difficult to tolerate, you can also attempt to write a deployment script yourself. **LINK FOR read here to learn more about the deployment, under the hood***
+If the recurrent breaking is too difficult to tolerate, you can also attempt to write a deployment script yourself. It may help to look at the [Under the Hood](../under-the-hood/README.md) section to learn about the low-level executions ran by Eureka.
 
 ## General Solution
 
