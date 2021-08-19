@@ -86,7 +86,7 @@ What we want to target is the argument being passed `ethereum.network` to the `a
 
 Save the file, and all verifications should now run for Rinkeby. Finally, we run the deployment commands in much the same way as both, just with the `provider` included. Deploying just the core Compound contracts is thus:
 ```sh
-etherscan=$ETHERSCAN_API_KEY provider=https://rinkeby-eth.compound.finance yarn eureka apply -n ropsten -b ./.build -c config/*.js -e eureka/{compound,testnet,testnet-gov}.eureka
+etherscan=$ETHERSCAN_API_KEY provider=https://rinkeby-eth.compound.finance yarn eureka apply -n ropsten -b ./.build -c config/*.js -e eureka/{compound,testnet}.eureka
 ```
 
 And with governance included:
