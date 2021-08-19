@@ -16,4 +16,6 @@ If the recurrent breaking is too difficult to tolerate, you can also attempt to 
 
 ## General Solution
 
+Any other issues can be fixed by cleaning the repo of the state file. 
+
 **link to tip about cleaning deployment state**

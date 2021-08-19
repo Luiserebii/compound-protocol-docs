@@ -36,11 +36,15 @@ etherscan=$ETHERSCAN_API_KEY provider=https://rinkeby-eth.compound.finance yarn 
 
 ## Tips
 
-### clean state
+### Cleaning Deployment State
 
-Any other issues can be fixed by cleaning the repo of the state file. 
+Eureka saves deployment state data on newly deployed contracts to a file. Running `yarn eureka clean` is useful for wiping this state and ensuring that a new deployment is clean. If you are looking to deploy all of Compound protocol again, you will need to clear the state!
 
-For example, to clean the deployment state for Ropsten, run:
+The general syntax of the command is:
+```sh
+yarn eureka clean -n network -c config/*.js
+```
+where network is substituted for the name of the network. For example, to clean the deployment state for Ropsten, run:
 ```sh
 yarn eureka clean -n ropsten -c config/*.js
 ```
@@ -63,6 +67,22 @@ And then, into `node_modules/@compound-finance/eureka/src/cli.mjs`, lines 40-43:
 ```
 From this, we can see that only the network (`-n`) and config (`-c`) switches are really read.
 
-### increase gas price
+### Increasing Gas Price
 
+By default, Eureka will run all transactions with a gas price of 1 Gwei. This might be useful to increase if you'd like to speed up the deployment process, either for convenience, or to resolve an error.
 
+We can accomplish this in a dirty way by directly modifying Eureka. Open the file located at `./node_modules/@compound-finance/eureka/src/ethereum.mjs` for editing, and within lines 207-218, look at the function there:
+```js
+export async function dispatch({ eth, provider, from, gas, gasPrice }, contract, data) {
+  return await eth.sendTransaction({
+    from,
+    to: contract,
+    value: 0,
+    gas,
+    gasPrice,
+    data: data
+  }).on('transactionHash', (hash) => {
+    console.log(`Running Ethereum Trx: ${hash}`);
+  });
+}
+```
