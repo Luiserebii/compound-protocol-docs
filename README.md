@@ -7,7 +7,7 @@ This repository contains documentation for building and deploying Compound proto
 mdBook is required to generate the documentation. To install mdBook, see: [https://github.com/rust-lang/mdBook#installation](https://github.com/rust-lang/mdBook#installation)
 
 ## Development Commands:
-  * `mdBook build` - Build the documentation to `books`
+  * `mdbook build` - Build the documentation to `books`
   * `mdbook serve --open` - Start serving the documentation and reload on change, opening in browser
 
 ## License

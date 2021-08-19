@@ -64,5 +64,5 @@ cd ..
 git clone https://github.com/compound-finance/compound-eureka/
 cd compound-eureka
 yarn install
-yarn eureka clean -n ropsten -c config/*.js
+yarn eureka clean -y -n ropsten -c config/*.js
 ```
