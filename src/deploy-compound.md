@@ -86,3 +86,21 @@ export async function dispatch({ eth, provider, from, gas, gasPrice }, contract,
   });
 }
 ```
+
+We want to hardcode the `gasPrice` variable. For example, if we were to hardcode it to 7 Gwei, we might modify the `gasPrice` line (line 213) like so:
+```js
+export async function dispatch({ eth, provider, from, gas, gasPrice }, contract, data) {
+  return await eth.sendTransaction({
+    from,
+    to: contract,
+    value: 0,
+    gas,
+    gasPrice: '7000000000', // Hardcoding to 7 Gwei
+    data: data
+  }).on('transactionHash', (hash) => {
+    console.log(`Running Ethereum Trx: ${hash}`);
+  });
+}
+```
+
+Save the file, and all Eureka transactions should now execute with the new gas price value!

@@ -2,7 +2,7 @@
 
 ## `Transaction timeout`
 
-This can occur if the transaction fails to confirm on time during the script. To prevent this, you can increase the Gwei manually (see file **do proper linking for this**)
+This can occur if the transaction fails to confirm on time during the script. To prevent this, you can [increase the gas price manually](../deploy-compound.md#increasing-gas-price).
 
 ## `yarn eureka apply` breaks partway
 
@@ -10,12 +10,10 @@ Sometimes when deploying, `yarn eureka apply` will break partway through deploym
 
 Typically when it breaks like this, you are given the option to save to state. You may save the deployment data to state and try to run the deployment again, and observe where it picks up; sometimes, it may skip some steps when starting again, so it is often safer to clean the state and start again. 
 
-This is unfortunately a bug in Eureka that has to be worked around. Setting the gas price manually (**also do linking for this**) is one way to attempt to avoid this error. 
+This is unfortunately a bug in Eureka that has to be worked around. [Setting the gas price manually](../deploy-compound.md#increasing-gas-price) is one way to attempt to avoid this error. 
 
 If the recurrent breaking is too difficult to tolerate, you can also attempt to write a deployment script yourself. **LINK FOR read here to learn more about the deployment, under the hood***
 
 ## General Solution
 
-Any other issues can be fixed by cleaning the repo of the state file. 
-
-**link to tip about cleaning deployment state**
+Any other issues can be fixed by [cleaning the repo of the state file](../deploy-compound.md#cleaning-deployment-state).
