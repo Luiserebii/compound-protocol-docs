@@ -24,6 +24,16 @@ To deploy our Compound protocol smart contracts, we will be using the script `ya
 
 We will be using the Ropsten test network, although we will later discuss how to get deployment working on other popular testnets, like Rinkeby.
 
+### Initial Clean
+
+A freshly cloned repository will already have deployment state saved, which cause Eureka to not execute a fresh deployment, processing any deployments under the pre-existing deployment data instead. Therefore, first clean the deployment state by running:
+
+```sh
+yarn eureka clean -n ropsten -c config/*.js
+```
+
+For more on `yarn eureka clean`, see the section on [Cleaning Deployment State below](#cleaning-deployment-state).
+
 ### Running the Deployment
 
 Through specifying the Etherscan API key, the network as Ropsten, and the appropriate config, build, and eureka filepaths, we create a command that deploys core Compound protocol smart contracts to Ropsten:
@@ -81,15 +91,53 @@ What about verifying contracts on Etherscan under the right network? Our solutio
       throw e;
     }
   }
-
 ```
 
-### Compound
+What we want to target is the argument being passed `ethereum.network` to the `await Etherscan.verifyContract()` call, and hardcode it to our target testnet (in this case, Rinkeby). Therefore, to hardcode it to Rinkeby, we might modify line 283 like so:
+```js
+  async function doVerify(contract, address, args, contractJson, constructorData) {
+    if (!ethereum.verificationOpts.etherscanApiKey) {
+      throw new Error(`Cannot verify contract without Etherscan API Key`);
+    }
+
+    let funcInfo = showFunc(contract, 'constructor', args);
+
+    if (dryRun) {
+      log(`[Dry run] Verifying contract ${contract} at ${address} with ${funcInfo}`);
+      return;
+    }
+
+    try {
+      log(`Verifying contract ${contract} at ${address} with ${funcInfo}`);
+
+      let {
+        verified,
+        url,
+        alreadyVerified
+      } = await Etherscan.verifyContract(contractJson, 'rinkeby', ethereum.verificationOpts.etherscanApiKey, address, constructorData, verbose); // Hardcoding to 'rinkeby'
+
+      if (!verified) {
+        throw new Error(`Failed to verify contract ${contract}`);
+      }
+
+      if (alreadyVerified) {
+        log(`Contract ${contract} already verified at ${url}`);
+      } else {
+        log(`Contract ${contract} verified on Etherscan at ${url}`);
+      }
+    } catch (e) {
+      logError(`Error verifying \`${funcInfo}\`: ${e.toString()}`);
+      throw e;
+    }
+  }
+```
+
+Save the file, and all verifications should now run for Rinkeby. Finally, we run the deployment commands in much the same way as both, just with the `provider` included. Deploying just the core Compound contracts is thus:
 ```sh
 etherscan=$ETHERSCAN_API_KEY provider=https://rinkeby-eth.compound.finance yarn eureka apply -n ropsten -b ./.build -c config/*.js -e eureka/{compound,testnet,testnet-gov}.eureka
 ```
 
-### Compound (+ Governance)
+And with governance included:
 ```sh
 etherscan=$ETHERSCAN_API_KEY provider=https://rinkeby-eth.compound.finance yarn eureka apply -n ropsten -b ./.build -c config/*.js -e eureka/{compound,testnet,testnet-gov}.eureka
 ```
