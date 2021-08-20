@@ -2,7 +2,7 @@
 
 ## `Transaction timeout`
 
-This can occur if the transaction fails to confirm on time during the script. To prevent this, you can [increase the gas price manually](../deploy-compound.md#increasing-gas-price).
+This can occur if the transaction fails to confirm on time during the script. To prevent this, you can [increase the gas price manually](../deploy-compound/tips.md#increasing-gas-price).
 
 ## `yarn eureka apply` breaks partway
 
@@ -10,10 +10,10 @@ Sometimes when deploying, `yarn eureka apply` will break partway through deploym
 
 Typically when it breaks like this, you are given the option to save to state. You may save the deployment data to state and try to run the deployment again, and observe where it picks up; sometimes, it may skip some steps when starting again, so it is often safer to clean the state and start again. 
 
-This is unfortunately a bug in Eureka that has to be worked around. [Setting the gas price manually](../deploy-compound.md#increasing-gas-price) is one way to attempt to avoid this error. 
+This is unfortunately a bug in Eureka that has to be worked around. [Setting the gas price manually](../deploy-compound/tips.md#increasing-gas-price) is one way to attempt to avoid this error. 
 
-If the recurrent breaking is too difficult to tolerate, you can also attempt to write a deployment script yourself. It may help to look at the [Under the Hood](../under-the-hood/README.md) section to learn about the low-level executions ran by Eureka.
+If the recurrent breaking is too difficult to tolerate, you can also attempt to write a deployment script yourself. It may help to look at the [Under the Hood](../under-the-hood) section to learn about the low-level executions ran by Eureka.
 
 ## General Solution
 
-Any other issues can be fixed by [cleaning the repo of the state file](../deploy-compound.md#cleaning-deployment-state).
+Any other issues can be fixed by [cleaning the repo of the state file](../deploy-compound/tips.md#cleaning-deployment-state).

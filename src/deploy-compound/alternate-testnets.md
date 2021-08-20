@@ -1,6 +1,6 @@
-# Using Alternate Testnets (e.g. Rinkeby)
+# Deploying to Alternate Testnets (e.g. Rinkeby)
 
-To use an alternate testnet, like Rinkeby, we have to be a little creative. Attempting to run `yarn eureka apply -n rinkeby ...` produces a deployment that appears to break because the emitted transactions are run out of order, suggesting it is undocumented for a reason.
+To deploy to an alternate testnet, like Rinkeby, we have to be a little creative. Attempting to run `yarn eureka apply -n rinkeby ...` produces a deployment that appears to break because the emitted transactions are run out of order, suggesting it is undocumented for a reason.
 
 However, we have a working deployment setup for the `-n ropsten` switch! So, by modifying the switch to run all transactions and verify contracts on the Rinkeby network instead, we can accomplish a successful deployment to Rinkeby. Thus, our job changes to ensuring that transactions running off of the `-n ropsten` switch pass through a Rinkeby provider, and that transactions are verified off of the Rinkeby network when interfacing with Etherscan.
 

@@ -47,7 +47,7 @@ v13.14.0
 ```
 Note: It's fine if your installation doesn't have matching minor versions or patch versions: as long as the major version is 13, i.e. `v13.x.x`, the installation is correct.
 
-And example output for correctly installed solc v0.6.16:
+And example output for correctly installed solc v0.5.16:
 ```sh
 root@ubuntu-s-2vcpu-4gb-intel-tor1-01:~# solc --version
 solc, the solidity compiler commandline interface

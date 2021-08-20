@@ -19,11 +19,11 @@ To fix this error which is relevant to a newer version of `shasum`, make the cha
 
 ## `Error: Source file requires different compiler version (current compiler is x.x.x+commit.xxxxxxxx.xxx.xxx)`
 
-`solc` v0.5.16+ is required to compile the current smart contracts. The solution is to install that version of `solc` to your computer. To install, please see the [Installation section](../getting-started.md#solc-v0516).
+`solc` v0.5.16+ is required to compile the current smart contracts. The solution is to install that version of `solc` to your computer. To install, please see the [Installation section on solc](../getting-started/installation.md#solc-v0516).
 
 ## `TypeError: Object.fromEntries is not a function`
 
-If you're getting this error, you are likely on an older version of node (check `node -v`). Chances are, you have installed node from the `apt` package manager, which installs Node 10.x. Due to the requirement of a version of Node below 14+ for `compound-eureka`, I recommend that you install Node 13.x. To install, please see the [Installation section](../getting-started.md#node-13x).
+If you're getting this error, you are likely on an older version of node (check `node -v`). Chances are, you have installed node from the `apt` package manager, which installs Node 10.x. Due to the requirement of a version of Node below 14+ for `compound-eureka`, I recommend that you install Node 13.x. To install, please see the [Installation section on Node](../getting-started/installation.md#node-13x).
 
 ## `../libusb/libusb/os/linux_udev.c:40:10: fatal error: libudev.h: No such file or directory`
 
@@ -173,10 +173,10 @@ gyp ERR! cwd /root/compound-protocol/node_modules/usb
 Done in 55.61s.
 ```
 
-What you will want to do is to make sure `libusb` and `libudev` are installed. To install them and fix the error, please see the [Installation section](../getting-started.md#libusb-and-libudev).
+What you will want to do is to make sure `libusb` and `libudev` are installed. To install them and fix the error, please see the [Installation section on libusb and libudev](../getting-started/installation.md#libusb-and-libudev).
 
 **NOTE**: If you have run a command that invokes this error, it is expected for the command to display this error at least once after installing, so don't worry if you see it again! Simply try the command again, and it should run successfully.
 
 ## `Error: Callback was already called`
 
-This error occurs with Node 14+. To solve, install an earlier version of Node, preferably Node 13.x. To install, please see the [Installation section](../getting-started.md#node-13x).
+This error occurs with Node 14+. To solve, install an earlier version of Node, preferably Node 13.x. To install, please see the [Installation section on Node](../getting-started/installation.md#node-13x).

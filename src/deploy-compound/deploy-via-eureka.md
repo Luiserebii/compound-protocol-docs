@@ -12,7 +12,7 @@ yarn install
 
 ## Deploying Compound Protocol
 
-To deploy our Compound protocol smart contracts, we will be using the script `yarn eureka apply`, specifying the network, build folder, config files, and eureka spec files. In order to verify deployed contracts via Etherscan, we specify the Etherscan API key through a passed `etherscan` environment variable. In this section, we will be writing the commands assuming the `ETHERSCAN_API_KEY` environment variable has been set up the way described in [Getting Started](./getting-started.md#etherscan-api-key).
+To deploy our Compound protocol smart contracts, we will be using the script `yarn eureka apply`, specifying the network, build folder, config files, and eureka spec files. In order to verify deployed contracts via Etherscan, we specify the Etherscan API key through a passed `etherscan` environment variable. In this section, we will be writing the commands assuming the `ETHERSCAN_API_KEY` environment variable has been set up the way described in [Getting Started](../getting-started/configuration.md#etherscan-api-key).
 
 We will be using the Ropsten test network, although we will later discuss how to get deployment working on other popular testnets, like Rinkeby.
 
@@ -24,7 +24,7 @@ A freshly cloned repository will already have deployment state saved, which caus
 yarn eureka clean -n ropsten -c config/*.js
 ```
 
-For more on `yarn eureka clean`, see the section on [Cleaning Deployment State below](#cleaning-deployment-state).
+For more on `yarn eureka clean`, see the section on [Cleaning Deployment State](./tips.md#cleaning-deployment-state).
 
 ### Running the Deployment
 
