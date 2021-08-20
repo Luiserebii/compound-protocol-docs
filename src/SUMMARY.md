@@ -4,7 +4,7 @@
 - [Getting Started](./getting-started/README.md)
    - [Installation](./getting-started/installation.md)
    - [Configuration](./getting-started/configuration.md)
-   - [Script](./getting-started/script.md)
+   - [Automate Setup via Script](./getting-started/script.md)
 - [Building Compound Protocol](./build-compound.md)
 - [Deploying Compound Protocol](./deploy-compound/README.md)
    - [Deploying via Eureka](./deploy-compound/deploy-via-eureka.md)
