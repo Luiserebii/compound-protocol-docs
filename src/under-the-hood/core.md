@@ -1,5 +1,11 @@
 # Compound Core
 
+The transactions outlined are the ones executed when specifying the `eureka/compound.eureka` and `eureka/testnet.eureka` files. They thus correspond to the command:
+
+```sh
+yarn eureka apply -n ropsten -b ./.build -c config/*.js -e eureka/{compound,testnet}.eureka
+```
+
 ## Order of Deployment
 
 1. Compound Lens
