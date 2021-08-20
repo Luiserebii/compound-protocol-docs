@@ -12,4 +12,4 @@ This section covers problems that may occur during the process of building or de
 ## compound-eureka
   * [`Transaction timeout`](./compound-eureka.md#transaction-timeout)
   * [`yarn eureka apply` breaks partway](./compound-eureka.md#yarn-eureka-apply-breaks-partway)
-  * [General Solution](./compound-eureka.md#general-solution)
+  * [General Failsafe](./compound-eureka.md#general-failsafe)

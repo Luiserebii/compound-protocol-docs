@@ -14,6 +14,6 @@ This is unfortunately a bug in Eureka that has to be worked around. [Setting the
 
 If the recurrent breaking is too difficult to tolerate, you can also attempt to write a deployment script yourself. It may help to look at the [Under the Hood](../under-the-hood) section to learn about the low-level executions ran by Eureka.
 
-## General Solution
+## General Failsafe
 
-Any other issues can be fixed by [cleaning the repo of the state file](../deploy-compound/tips.md#cleaning-deployment-state).
+Any other issues may be fixed by [cleaning the repo of the state file](../deploy-compound/tips.md#cleaning-deployment-state), which will allow Eureka to run fresh.
