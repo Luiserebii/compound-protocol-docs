@@ -26,7 +26,7 @@ yarn eureka apply -n ropsten -b ./.build -c config/*.js -e eureka/{compound,test
 16. ERC-20 BAT
 17. Fauceteer
 18. Simple Price Oracle
-19. Unitroller [Unitroller ---> Comptroller, tagged as Comptroller]
+19. Unitroller [Unitroller ---> ComptrollerG1]
 20. CToken cZRX [CErc20Immutable]
 21. CToken cWBTC [CErc20Immutable]
 22. CToken cUSDT [CErc20Delegator]
