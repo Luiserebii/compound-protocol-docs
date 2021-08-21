@@ -18,6 +18,7 @@ Compiling is simple:
 ```sh
 yarn compile
 ```
+<script id="asciicast-KKD6834A608k84sb0aqyHILm9" src="https://asciinema.org/a/KKD6834A608k84sb0aqyHILm9.js" async data-autoplay="true"></script>
 
 ## Testing
 

@@ -8,10 +8,10 @@ For setting a private key to run transactions from, you have two options:
 1. Save the private key in a file named after the network within `~/ethereum`
 2. Pass the `ACCOUNT`/`pk` environment variable to the command
 
-I recommend stashing the private key in a file. For example, to save a private key `80bbfb503fb22fc4de19bac1e42cbd5983d8ed26b5c04884b142e6ddf6140eef` for usage for the Rinkeby network, one may run:
+I recommend stashing the private key in a file. For example, to save a private key `80bbfb503fb22fc4de19bac1e42cbd5983d8ed26b5c04884b142e6ddf6140eef` for usage for the Ropsten network, one may run:
 ```sh
 mkdir -p ~/.ethereum
-echo '80bbfb503fb22fc4de19bac1e42cbd5983d8ed26b5c04884b142e6ddf6140eef' > ~/.ethereum/rinkeby
+echo '80bbfb503fb22fc4de19bac1e42cbd5983d8ed26b5c04884b142e6ddf6140eef' > ~/.ethereum/ropsten
 ```
 
 ## Etherscan API Key

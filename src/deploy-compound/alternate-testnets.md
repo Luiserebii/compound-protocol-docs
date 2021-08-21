@@ -93,3 +93,5 @@ And with governance included:
 ```sh
 etherscan=$ETHERSCAN_API_KEY provider=https://rinkeby-eth.compound.finance yarn eureka apply -n ropsten -b ./.build -c config/*.js -e eureka/{compound,testnet,testnet-gov}.eureka
 ```
+
+It is important to note, of course, that the private key saved at `~/.ethereum/ropsten` will be used, not the one at `~/.ethereum/rinkeby`!
