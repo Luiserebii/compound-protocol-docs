@@ -20,5 +20,5 @@ chmod 755 compound-setup.sh
 ./compound-setup.sh -p 80bbfb503fb22fc4de19bac1e42cbd5983d8ed26b5c04884b142e6ddf6140eef -e 7C0WA5ES3176894W6APLTH0K9T6S0M1V3F
 . ~/.bashrc
 ```
-
 <script id="asciicast-oyiLT6TaHzXWpoFGPAR7Q18lA" src="https://asciinema.org/a/oyiLT6TaHzXWpoFGPAR7Q18lA.js" async data-autoplay="true"></script>
+##### Downloading and running setup script on a fresh Ubuntu Linux 20.04 LTS machine

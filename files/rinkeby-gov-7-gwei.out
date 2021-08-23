@@ -1,0 +1,1093 @@
+root@ubuntu-s-2vcpu-4gb-intel-tor1-01:~/compound-eureka# etherscan=$ETHERSCAN_API_KEY provider=https://rinkeby-eth.compound.finance yarn eureka apply -n ropsten -b ./.build -c config/*.js -e eureka/{compound,testnet,testnet-gov}.eureka
+yarn run v1.22.11
+$ node --experimental-vm-modules --unhandled-rejections=strict node_modules/@compound-finance/eureka/src/cli.mjs apply -n ropsten -b ./.build -c config/compound.js config/dai.js config/gov.js config/networks-abi.js config/networks.js config/open-oracle.js config/underlying.js -e eureka/compound.eureka eureka/testnet.eureka eureka/testnet-gov.eureka
+Planned following actions:
+
+Build<CompoundLens#lens [25fe06d], {
+
+}>
+
+Build<JumpRateModel#Base200bps_Slope2000bps_Jump20000bps_Kink90 [b73e68c], {
+  kink: Number<9e17>
+  jump: Number<20000e14>
+  slope: Number<2000e14>
+  base: Number<200e14>
+  type: 'jump'
+}>
+
+Build<WhitePaperInterestRateModel#Base200bps_Slope3000bps [b73e68c], {
+  slope: Number<3000e14>
+  base: Number<200e14>
+  type: 'linear'
+}>
+
+Build<WhitePaperInterestRateModel#Base500bps_Slope1200bps [b73e68c], {
+  slope: Number<1200e14>
+  base: Number<500e14>
+  type: 'linear'
+}>
+
+Build<WhitePaperInterestRateModel#Base200bps_Slope1000bps [b73e68c], {
+  slope: Number<1000e14>
+  base: Number<200e14>
+  type: 'linear'
+}>
+
+Build<ComptrollerG2#g2 [25fe06d], {
+  generation: 'g2'
+}>
+
+Build<ComptrollerG1#g1 [b73e68c], {
+  generation: 'g1'
+}>
+
+Build<CErc20Delegate#cErc20Delegate [b73e68c], {
+
+}>
+
+Build<KyberNetworkCrystal#knc [kyber], {
+  type: 'knc'
+  name: 'Kyber Network Crystal'
+  symbol: 'KNC'
+  decimals: Number<18e0>
+  total_supply: Number<210564972417906851272699383e0>
+  sale_start_time: Number<1505455200e0>
+  sale_end_time: Number<1506232800e0>
+}>
+
+Build<LinkToken#link [chainlink], {
+  type: 'link'
+  name: 'ChainLink Token'
+  symbol: 'LINK'
+  decimals: Number<18e0>
+}>
+
+Build<ZRXToken#zrx [zrx], {
+  type: 'zrx'
+  name: '0x Protocol Token'
+  symbol: 'ZRX'
+  decimals: Number<18e0>
+}>
+
+Build<FaucetToken#wbtc [compound-test], {
+  total_supply: Number<3851e8>
+  decimals: Number<8e0>
+  symbol: 'WBTC'
+  name: 'Wrapped BTC'
+}>
+
+Build<TetherToken#usdt [usdt], {
+  total_supply: Number<5737970410e6>
+  decimals: Number<6e0>
+  symbol: 'USDT'
+  name: 'Tether'
+  type: 'usdt'
+}>
+
+Build<FaucetToken#usdc [compound-test], {
+  total_supply: Number<732246278e6>
+  decimals: Number<6e0>
+  symbol: 'USDC'
+  name: 'USD Coin'
+}>
+
+Build<FaucetToken#sai [compound-test], {
+  total_supply: Number<8299054e18>
+  decimals: Number<18e0>
+  symbol: 'SAI'
+  name: 'Sai'
+}>
+
+Build<FaucetToken#rep [compound-test], {
+  total_supply: Number<11000000e18>
+  decimals: Number<18e0>
+  symbol: 'REP'
+  name: 'Augur'
+}>
+
+Build<FaucetToken#dai [compound-test], {
+  total_supply: Number<107584313e18>
+  decimals: Number<18e0>
+  symbol: 'DAI'
+  name: 'Dai'
+}>
+
+Build<BAToken#bat [bat], {
+  type: 'bat'
+  name: 'Basic Attention Token'
+  symbol: 'BAT'
+  decimals: Number<18e0>
+}>
+
+Build<Fauceteer#fauceteer [compound-test], {
+
+}>
+
+Build<SimplePriceOracle#oracle [b73e68c], {
+  prices: {
+  '#bat': { type: 'number', base: 67126, exp: 10 },
+  '#dai': { type: 'number', base: 273463137, exp: 7 },
+  '#rep': { type: 'number', base: 5481120, exp: 10 },
+  '#sai': { type: 'number', base: 5285551943761727, exp: 0 },
+  '#usdc': { type: 'number', base: 268860568, exp: 19 },
+  '#usdt': { type: 'number', base: 268860568, exp: 19 },
+  '#wbtc': { type: 'number', base: 308928019771, exp: 18 },
+  '#zrx': { type: 'number', base: 104582, exp: 10 }
+}
+}>
+
+Build<Comp#comp [b73e68c], {
+  delegates: { '$sender': { type: 'account', account: 'sender' } }
+  decimals: Number<18e0>
+  symbol: 'COMP'
+  name: 'Comp'
+}>
+
+Build<TimelockTest#timelock [compound-test], {
+  delay: Number<60e0>
+}>
+
+Build<Unitroller#comptroller [b73e68c], {
+  max_assets: Number<20e0>
+  close_factor: Number<5e17>
+  oracle: #oracle
+  generation: 'g1'
+  implementation: #g1
+  admin: $sender
+}>
+
+Build<CErc20Immutable#cZRX [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope3000bps
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e26>
+  underlying: #zrx
+  name: 'Compound ZRX'
+  symbol: 'cZRX'
+  type: 'immutable'
+  decimals: 8
+}>
+
+Build<CErc20Immutable#cWBTC [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope3000bps
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e16>
+  underlying: #wbtc
+  name: 'Compound WBTC'
+  symbol: 'cWBTC'
+  type: 'immutable'
+  decimals: 8
+}>
+
+Build<CErc20Delegator#cUSDT [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope2000bps_Jump20000bps_Kink90
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e14>
+  underlying: #usdt
+  name: 'Compound USDT'
+  symbol: 'cUSDT'
+  type: 'delegator'
+  decimals: 8
+  become_implementation_data: '0x'
+}>
+
+Build<CErc20Immutable#cUSDC [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope1000bps
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e14>
+  underlying: #usdc
+  name: 'Compound USDC'
+  symbol: 'cUSDC'
+  type: 'immutable'
+  decimals: 8
+}>
+
+Build<CEther#cETH [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope1000bps
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e26>
+  name: 'Compound ETH'
+  symbol: 'cETH'
+  type: 'cether'
+  decimals: 8
+}>
+
+Build<CErc20Immutable#cSAI [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base500bps_Slope1200bps
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e26>
+  underlying: #sai
+  name: 'Compound SAI'
+  symbol: 'cSAI'
+  type: 'immutable'
+  decimals: 8
+}>
+
+Build<CErc20Immutable#cREP [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope3000bps
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e26>
+  underlying: #rep
+  name: 'Compound REP'
+  symbol: 'cREP'
+  type: 'immutable'
+  decimals: 8
+}>
+
+Build<CErc20Delegator#cDAI [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope1000bps
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e26>
+  underlying: #dai
+  name: 'Compound DAI'
+  symbol: 'cDAI'
+  type: 'delegator'
+  decimals: 8
+  become_implementation_data: '0x'
+}>
+
+Build<CErc20Immutable#cBAT [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope3000bps
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e26>
+  underlying: #bat
+  name: 'Compound BAT'
+  symbol: 'cBAT'
+  type: 'immutable'
+  decimals: 8
+}>
+
+Update<KyberNetworkCrystal#knc kyber, +balances>
+
+Update<LinkToken#link chainlink, +balances>
+
+Update<ZRXToken#zrx zrx, +balances>
+
+Update<FaucetToken#wbtc compound-test, +balances>
+
+Update<TetherToken#usdt usdt, +balances>
+
+Update<FaucetToken#usdc compound-test, +balances>
+
+Update<FaucetToken#sai compound-test, +balances>
+
+Update<FaucetToken#rep compound-test, +balances>
+
+Update<FaucetToken#dai compound-test, +balances>
+
+Update<BAToken#bat bat, +balances>
+
+Build<Reservoir#reservoir [e0a16ae], {
+  target: #comptroller
+  token: #comp
+  drip_rate: Number<5e17>
+}>
+
+Update<Comp#comp b73e68c, +balances>
+
+Build<GovernorAlphaHarness#gov [compound-test], {
+  timelock: #timelock
+  comp: #comp
+  harness: true
+}>
+
+Update<TimelockTest#timelock compound-test, +admin>
+
+Update<Unitroller#comptroller b73e68c, +collateral_factors,supported_markets>
+
+Build<Maximillion#max [b73e68c], {
+  cEther: #cETH
+}>
+
+Do you want to apply these actions? [yN] y
+Running action Build<CompoundLens#lens [25fe06d], {
+
+}>...
+
+Deploying Contract `CompoundLens#constructor[]`
+
+Running Ethereum Trx: 0x3cb27fb61c70807933f86ce0861a8f891132642407d32a74772acd27e55b35bf
+Contract CompoundLens deployed to 0x888812732ABdEb60E2Ee9507E6AeeEAe127725DC
+
+Verifying contract CompoundLens at 0x888812732ABdEb60E2Ee9507E6AeeEAe127725DC with CompoundLens#constructor[]
+
+Contract CompoundLens verified on Etherscan at https://rinkeby.etherscan.io/address/0x888812732ABdEb60E2Ee9507E6AeeEAe127725DC
+
+Running action Build<JumpRateModel#Base200bps_Slope2000bps_Jump20000bps_Kink90 [b73e68c], {
+  kink: Number<9e17>
+  jump: Number<20000e14>
+  slope: Number<2000e14>
+  base: Number<200e14>
+  type: 'jump'
+}>...
+
+Deploying Contract `JumpRateModel#constructor[baseRatePerYear=Number<200e14>, multiplierPerYear=Number<2000e14>, jumpMultiplierPerYear=Number<20000e14>, kink_=Number<9e17>]`
+
+Running Ethereum Trx: 0x284d1a9f5a5a433f4d1196e3afd3e4534bb4c8e052486ed3496742b7de81b354
+Contract JumpRateModel deployed to 0x6b82664D4FFaE462C8818af5Ec78922F14e482e0
+
+Verifying contract JumpRateModel at 0x6b82664D4FFaE462C8818af5Ec78922F14e482e0 with JumpRateModel#constructor[baseRatePerYear=Number<200e14>, multiplierPerYear=Number<2000e14>, jumpMultiplierPerYear=Number<20000e14>, kink_=Number<9e17>]
+
+Contract JumpRateModel verified on Etherscan at https://rinkeby.etherscan.io/address/0x6b82664D4FFaE462C8818af5Ec78922F14e482e0
+
+Running action Build<WhitePaperInterestRateModel#Base200bps_Slope3000bps [b73e68c], {
+  slope: Number<3000e14>
+  base: Number<200e14>
+  type: 'linear'
+}>...
+
+Deploying Contract `WhitePaperInterestRateModel#constructor[baseRatePerYear=Number<200e14>, multiplierPerYear=Number<3000e14>]`
+
+Running Ethereum Trx: 0x5b23db9770bb254c3c5008e7b75cde77e2195689fcc4f9ef37eb5093f564c29b
+Contract WhitePaperInterestRateModel deployed to 0xDbd5B325fDcbe8c76C170B2F84e8a3AE3CDf3Fe4
+
+Verifying contract WhitePaperInterestRateModel at 0xDbd5B325fDcbe8c76C170B2F84e8a3AE3CDf3Fe4 with WhitePaperInterestRateModel#constructor[baseRatePerYear=Number<200e14>, multiplierPerYear=Number<3000e14>]
+
+Contract WhitePaperInterestRateModel verified on Etherscan at https://rinkeby.etherscan.io/address/0xDbd5B325fDcbe8c76C170B2F84e8a3AE3CDf3Fe4
+
+Running action Build<WhitePaperInterestRateModel#Base500bps_Slope1200bps [b73e68c], {
+  slope: Number<1200e14>
+  base: Number<500e14>
+  type: 'linear'
+}>...
+
+Deploying Contract `WhitePaperInterestRateModel#constructor[baseRatePerYear=Number<500e14>, multiplierPerYear=Number<1200e14>]`
+
+Running Ethereum Trx: 0x0e16b3913c3c909881ce3424aecafdec8a30f589eb9b6a3f5390588742494b10
+Contract WhitePaperInterestRateModel deployed to 0xBBD00494B06dD020BaAe461B76896F6F41aB8350
+
+Verifying contract WhitePaperInterestRateModel at 0xBBD00494B06dD020BaAe461B76896F6F41aB8350 with WhitePaperInterestRateModel#constructor[baseRatePerYear=Number<500e14>, multiplierPerYear=Number<1200e14>]
+
+Contract WhitePaperInterestRateModel verified on Etherscan at https://rinkeby.etherscan.io/address/0xBBD00494B06dD020BaAe461B76896F6F41aB8350
+
+Running action Build<WhitePaperInterestRateModel#Base200bps_Slope1000bps [b73e68c], {
+  slope: Number<1000e14>
+  base: Number<200e14>
+  type: 'linear'
+}>...
+
+Deploying Contract `WhitePaperInterestRateModel#constructor[baseRatePerYear=Number<200e14>, multiplierPerYear=Number<1000e14>]`
+
+Running Ethereum Trx: 0x989be95b26729faaafb4c1176379c9b106d7b092906537562c09f25267d40fbd
+Contract WhitePaperInterestRateModel deployed to 0x81D3ff969c16D2aA8DF1f6a42D1b5C5445654434
+
+Verifying contract WhitePaperInterestRateModel at 0x81D3ff969c16D2aA8DF1f6a42D1b5C5445654434 with WhitePaperInterestRateModel#constructor[baseRatePerYear=Number<200e14>, multiplierPerYear=Number<1000e14>]
+
+Contract WhitePaperInterestRateModel verified on Etherscan at https://rinkeby.etherscan.io/address/0x81D3ff969c16D2aA8DF1f6a42D1b5C5445654434
+
+Running action Build<ComptrollerG2#g2 [25fe06d], {
+  generation: 'g2'
+}>...
+
+Deploying Contract `ComptrollerG2#constructor[]`
+
+Running Ethereum Trx: 0x21e79379b10adf1003fe8c86eda9ab3eadb85f1c6b67d333a14a89b0990114e1
+Contract ComptrollerG2 deployed to 0x1b19f0F8534D2aa0A68C9cD99B0C976AD8dF19b1
+
+Verifying contract ComptrollerG2 at 0x1b19f0F8534D2aa0A68C9cD99B0C976AD8dF19b1 with ComptrollerG2#constructor[]
+
+Contract ComptrollerG2 verified on Etherscan at https://rinkeby.etherscan.io/address/0x1b19f0F8534D2aa0A68C9cD99B0C976AD8dF19b1
+
+Running action Build<ComptrollerG1#g1 [b73e68c], {
+  generation: 'g1'
+}>...
+
+Deploying Contract `ComptrollerG1#constructor[]`
+
+Running Ethereum Trx: 0xfca4b97dfec545b0c8d224589951e4c694cf7d0d7f056029fb6be97729afd4da
+Contract ComptrollerG1 deployed to 0xb6c0182AaD00f5041dda48D3cc2A071c8EdC6d39
+
+Verifying contract ComptrollerG1 at 0xb6c0182AaD00f5041dda48D3cc2A071c8EdC6d39 with ComptrollerG1#constructor[]
+
+Contract ComptrollerG1 verified on Etherscan at https://rinkeby.etherscan.io/address/0xb6c0182AaD00f5041dda48D3cc2A071c8EdC6d39
+
+Running action Build<CErc20Delegate#cErc20Delegate [b73e68c], {
+
+}>...
+
+Deploying Contract `CErc20Delegate#constructor[]`
+
+Running Ethereum Trx: 0xaa057209e497ae49116bc5f3f03b4c12f40f2c370decc48128f640fba777ca9d
+Contract CErc20Delegate deployed to 0x2Aa87989fB6c7efe4DA4575A56A3bA398B590390
+
+Verifying contract CErc20Delegate at 0x2Aa87989fB6c7efe4DA4575A56A3bA398B590390 with CErc20Delegate#constructor[]
+
+Contract CErc20Delegate verified on Etherscan at https://rinkeby.etherscan.io/address/0x2Aa87989fB6c7efe4DA4575A56A3bA398B590390
+
+Running action Build<KyberNetworkCrystal#knc [kyber], {
+  type: 'knc'
+  name: 'Kyber Network Crystal'
+  symbol: 'KNC'
+  decimals: Number<18e0>
+  total_supply: Number<210564972417906851272699383e0>
+  sale_start_time: Number<1505455200e0>
+  sale_end_time: Number<1506232800e0>
+}>...
+
+Deploying Contract `KyberNetworkCrystal#constructor[tokenTotalAmount=Number<210564972417906851272699383e0>, startTime=Number<1505455200e0>, endTime=Number<1506232800e0>, admin='0xf7fe578C81788A551E6c3Efa54501F463CE26af7']`
+
+Running Ethereum Trx: 0x6b5ebd26fd812fe59fc47e15ede648817d03f843f0fa426c1e49ed8e9ad4353d
+Contract KyberNetworkCrystal deployed to 0xd3771350070b1d9B5c894F42394f39306Cc38a3E
+
+Running action Build<LinkToken#link [chainlink], {
+  type: 'link'
+  name: 'ChainLink Token'
+  symbol: 'LINK'
+  decimals: Number<18e0>
+}>...
+
+Deploying Contract `LinkToken#constructor[]`
+
+Running Ethereum Trx: 0x1d9ab8cc8484715dc06d61de90cac94d6dbe0dc072f31f24262db35c3f539a6f
+Contract LinkToken deployed to 0x29E58a11800F4d7BB847430F343930B0052607a1
+
+Running action Build<ZRXToken#zrx [zrx], {
+  type: 'zrx'
+  name: '0x Protocol Token'
+  symbol: 'ZRX'
+  decimals: Number<18e0>
+}>...
+
+Deploying Contract `ZRXToken#constructor[]`
+
+Running Ethereum Trx: 0xfb186f1bf3a5d9b6aeaabcd3406e30a682722ce777efba25e4923260cdaa8d8a
+Contract ZRXToken deployed to 0x7f90C3737C23E76B6F933A37ef12Cc3eDdBa2837
+
+Running action Build<FaucetToken#wbtc [compound-test], {
+  total_supply: Number<3851e8>
+  decimals: Number<8e0>
+  symbol: 'WBTC'
+  name: 'Wrapped BTC'
+}>...
+
+Deploying Contract `FaucetToken#constructor[Number<3851e8>,'Wrapped BTC',Number<8e0>,'WBTC']`
+
+Running Ethereum Trx: 0xbd348386b2bddb18c1bc85b6aff97617fc43cf1aab93157d4c9c5714ac78ee44
+Contract FaucetToken deployed to 0xB681D9B890abB313858810003dE55fa46DA66012
+
+Verifying contract FaucetToken at 0xB681D9B890abB313858810003dE55fa46DA66012 with FaucetToken#constructor[Number<3851e8>,'Wrapped BTC',Number<8e0>,'WBTC']
+
+Contract FaucetToken verified on Etherscan at https://rinkeby.etherscan.io/address/0xB681D9B890abB313858810003dE55fa46DA66012
+
+Running action Build<TetherToken#usdt [usdt], {
+  total_supply: Number<5737970410e6>
+  decimals: Number<6e0>
+  symbol: 'USDT'
+  name: 'Tether'
+  type: 'usdt'
+}>...
+
+Deploying Contract `TetherToken#constructor[Number<5737970410e6>,'Tether','USDT',Number<6e0>]`
+
+Running Ethereum Trx: 0x99bfb4ebaec4eff48caa4191c132511746100dadf2274767f06c9492c2ac938b
+Contract TetherToken deployed to 0x2176950537E542034b59713AAB667F25d5400EB3
+
+Executing Trx `TetherToken#issue[Number<5737970410e6>]`
+
+Running Ethereum Trx: 0xfafd821e251e857ec8e21f57da42318dc2ab5f0ecc109b879a8864f15aaf5fe6
+Running action Build<FaucetToken#usdc [compound-test], {
+  total_supply: Number<732246278e6>
+  decimals: Number<6e0>
+  symbol: 'USDC'
+  name: 'USD Coin'
+}>...
+
+Deploying Contract `FaucetToken#constructor[Number<732246278e6>,'USD Coin',Number<6e0>,'USDC']`
+
+Running Ethereum Trx: 0x89ef0a17f4e1c3969ddb81cb9e0679fbb9abbc4cab4aeb2e5a15c6b829c1a1b1
+Contract FaucetToken deployed to 0x874DfEaC85A0Dbf1fdA5EF7DA52a8899Cf90D3e3
+
+Verifying contract FaucetToken at 0x874DfEaC85A0Dbf1fdA5EF7DA52a8899Cf90D3e3 with FaucetToken#constructor[Number<732246278e6>,'USD Coin',Number<6e0>,'USDC']
+
+Contract FaucetToken verified on Etherscan at https://rinkeby.etherscan.io/address/0x874DfEaC85A0Dbf1fdA5EF7DA52a8899Cf90D3e3
+
+Running action Build<FaucetToken#sai [compound-test], {
+  total_supply: Number<8299054e18>
+  decimals: Number<18e0>
+  symbol: 'SAI'
+  name: 'Sai'
+}>...
+
+Deploying Contract `FaucetToken#constructor[Number<8299054e18>,'Sai',Number<18e0>,'SAI']`
+
+Running Ethereum Trx: 0xa59314167cd0ceed9756bd017022dfcc588c70eda90f19216226a0582f063060
+Contract FaucetToken deployed to 0xe0A6179Bf71BC8FAFF8810925EF35eec395b9847
+
+Verifying contract FaucetToken at 0xe0A6179Bf71BC8FAFF8810925EF35eec395b9847 with FaucetToken#constructor[Number<8299054e18>,'Sai',Number<18e0>,'SAI']
+
+Contract FaucetToken verified on Etherscan at https://rinkeby.etherscan.io/address/0xe0A6179Bf71BC8FAFF8810925EF35eec395b9847
+
+Running action Build<FaucetToken#rep [compound-test], {
+  total_supply: Number<11000000e18>
+  decimals: Number<18e0>
+  symbol: 'REP'
+  name: 'Augur'
+}>...
+
+Deploying Contract `FaucetToken#constructor[Number<11000000e18>,'Augur',Number<18e0>,'REP']`
+
+Running Ethereum Trx: 0xfa0d99e119cf0dd2c9189bc7539426749b9c828abd3666387b80bfac1cc40ad5
+Contract FaucetToken deployed to 0x40650F8aB0497324C16ddB9846108eD5eFc3Ec96
+
+Verifying contract FaucetToken at 0x40650F8aB0497324C16ddB9846108eD5eFc3Ec96 with FaucetToken#constructor[Number<11000000e18>,'Augur',Number<18e0>,'REP']
+
+Contract FaucetToken verified on Etherscan at https://rinkeby.etherscan.io/address/0x40650F8aB0497324C16ddB9846108eD5eFc3Ec96
+
+Running action Build<FaucetToken#dai [compound-test], {
+  total_supply: Number<107584313e18>
+  decimals: Number<18e0>
+  symbol: 'DAI'
+  name: 'Dai'
+}>...
+
+Deploying Contract `FaucetToken#constructor[Number<107584313e18>,'Dai',Number<18e0>,'DAI']`
+
+Running Ethereum Trx: 0x6421381d75554ba2ce93911dfd8b9bf6a974120961cd0cb0186e684405ccd369
+Contract FaucetToken deployed to 0x4e8ad90aF369d984bfc689a686a015aD4F47A9c1
+
+Verifying contract FaucetToken at 0x4e8ad90aF369d984bfc689a686a015aD4F47A9c1 with FaucetToken#constructor[Number<107584313e18>,'Dai',Number<18e0>,'DAI']
+
+Contract FaucetToken verified on Etherscan at https://rinkeby.etherscan.io/address/0x4e8ad90aF369d984bfc689a686a015aD4F47A9c1
+
+Running action Build<BAToken#bat [bat], {
+  type: 'bat'
+  name: 'Basic Attention Token'
+  symbol: 'BAT'
+  decimals: Number<18e0>
+}>...
+
+Deploying Contract `BAToken#constructor[_ethFundDeposit='0x0000000000000000000000000000000000000000', _batFundDeposit='0xf7fe578C81788A551E6c3Efa54501F463CE26af7', _fundingStartBlock=0, _fundingEndBlock=0]`
+
+Running Ethereum Trx: 0x0caac71dd833c9d8c16d724c544537012761cefdaff3a120489849236e4db1a2
+Contract BAToken deployed to 0x503E390472398d329B6501c85BBF89dF9D432445
+
+Running action Build<Fauceteer#fauceteer [compound-test], {
+
+}>...
+
+Deploying Contract `Fauceteer#constructor[]`
+
+Running Ethereum Trx: 0xafb2f4a31fa5ab03d57804eee8e3172413333e93ac14123081a71a16ad2f90d9
+Contract Fauceteer deployed to 0xC33DcaFd15a5B5aaC1923FEAc383e37928E6f60b
+
+Verifying contract Fauceteer at 0xC33DcaFd15a5B5aaC1923FEAc383e37928E6f60b with Fauceteer#constructor[]
+
+Contract Fauceteer verified on Etherscan at https://rinkeby.etherscan.io/address/0xC33DcaFd15a5B5aaC1923FEAc383e37928E6f60b
+
+Running action Build<SimplePriceOracle#oracle [b73e68c], {
+  prices: {
+  '#bat': { type: 'number', base: 67126, exp: 10 },
+  '#dai': { type: 'number', base: 273463137, exp: 7 },
+  '#rep': { type: 'number', base: 5481120, exp: 10 },
+  '#sai': { type: 'number', base: 5285551943761727, exp: 0 },
+  '#usdc': { type: 'number', base: 268860568, exp: 19 },
+  '#usdt': { type: 'number', base: 268860568, exp: 19 },
+  '#wbtc': { type: 'number', base: 308928019771, exp: 18 },
+  '#zrx': { type: 'number', base: 104582, exp: 10 }
+}
+}>...
+
+Deploying Contract `SimplePriceOracle#constructor[]`
+
+Running Ethereum Trx: 0xfd07882742667af35143dbeb659949bd9053f7a8f2d032fcbc94b8efea0d26fd
+Contract SimplePriceOracle deployed to 0xfeC87B63c7E973DFD120f8f73742Bd2a478C9678
+
+Verifying contract SimplePriceOracle at 0xfeC87B63c7E973DFD120f8f73742Bd2a478C9678 with SimplePriceOracle#constructor[]
+
+Contract SimplePriceOracle verified on Etherscan at https://rinkeby.etherscan.io/address/0xfeC87B63c7E973DFD120f8f73742Bd2a478C9678
+
+Setting underlying prices...
+Setting price of #bat from 0 to 671260000000000
+Executing Trx `SimplePriceOracle#setDirectPrice['#bat',BN<671260000000000>]`
+
+Running Ethereum Trx: 0x3956b346193f24ed388c10956912902af32099888c0242d35beef13c574c2371
+Setting price of #dai from 0 to 2734631370000000
+Executing Trx `SimplePriceOracle#setDirectPrice['#dai',BN<2734631370000000>]`
+
+Running Ethereum Trx: 0xce9f0cb52a9972355219402962a53cf7679b4cd556d37e4607fcc24e1717c9c2
+Setting price of #rep from 0 to 54811200000000000
+Executing Trx `SimplePriceOracle#setDirectPrice['#rep',BN<54811200000000000>]`
+
+Running Ethereum Trx: 0xde93f9ab895dc761aa337d09c0e43349551898f654a217786f62115156a8e036
+Setting price of #sai from 0 to 5285551943761727
+Executing Trx `SimplePriceOracle#setDirectPrice['#sai',BN<5285551943761727>]`
+
+Running Ethereum Trx: 0xfa8f573b74b7f7001aa2f180bb1c4f6d2315dcee6a7fe6a5e45cea529537f1e0
+Setting price of #usdc from 0 to 2688605680000000000000000000
+Executing Trx `SimplePriceOracle#setDirectPrice['#usdc',BN<2688605680000000000000000000>]`
+
+Running Ethereum Trx: 0xfaa71801ec960e4f847ba06d6530d4be7fe21b2e949855378650089455944a43
+Setting price of #usdt from 0 to 2688605680000000000000000000
+Executing Trx `SimplePriceOracle#setDirectPrice['#usdt',BN<2688605680000000000000000000>]`
+
+Running Ethereum Trx: 0x15cea4c310e633a2ac24eabfd1381533f8af7975ccf2bfddd5e9d366a5cff249
+Setting price of #wbtc from 0 to 308928019771000000000000000000
+Executing Trx `SimplePriceOracle#setDirectPrice['#wbtc',BN<308928019771000000000000000000>]`
+
+Running Ethereum Trx: 0x04cf031d8808d1c34d1f84e2048854ba2428dd35b5b745d218fcefd813d1fcfb
+Setting price of #zrx from 0 to 1045820000000000
+Executing Trx `SimplePriceOracle#setDirectPrice['#zrx',BN<1045820000000000>]`
+
+Running Ethereum Trx: 0xe49e86794ac2f23cbbf3fc1550b34c421eb735d99cccdbfd5f2b6724302d82ac
+Running action Build<Comp#comp [b73e68c], {
+  delegates: { '$sender': { type: 'account', account: 'sender' } }
+  decimals: Number<18e0>
+  symbol: 'COMP'
+  name: 'Comp'
+}>...
+
+Deploying Contract `Comp#constructor[account='0xf7fe578C81788A551E6c3Efa54501F463CE26af7']`
+
+Running Ethereum Trx: 0xaa6b63afbb9cb3bafb02682a86d859b970f1f3baa96eeeac52573a4f761d1aef
+Contract Comp deployed to 0x3588Fac48DfF2fFba22A5B1cedA84C11E525af5e
+
+Verifying contract Comp at 0x3588Fac48DfF2fFba22A5B1cedA84C11E525af5e with Comp#constructor[account='0xf7fe578C81788A551E6c3Efa54501F463CE26af7']
+
+Contract Comp verified on Etherscan at https://rinkeby.etherscan.io/address/0x3588Fac48DfF2fFba22A5B1cedA84C11E525af5e
+
+Setting token delegates for Comp...
+Setting delegate for "$sender" to {"type":"account","account":"sender"}
+Executing Trx `Comp#delegate[$sender]`
+
+Running Ethereum Trx: 0x53acbaa2147e990d8cc4b7b78f89c05550830308710322c57d2e0ef5f0fefca1
+Running action Build<TimelockTest#timelock [compound-test], {
+  delay: Number<60e0>
+}>...
+
+Deploying Contract `TimelockTest#constructor[admin_='0xf7fe578C81788A551E6c3Efa54501F463CE26af7', delay_=Number<60e0>]`
+
+Running Ethereum Trx: 0x0a9bb25d1c9e88bcd153f692eb103e642dee03e86a02a59c1584b58758a6a6b7
+Contract TimelockTest deployed to 0xEEF6f78Ee0d64A22Da56d5B6ACd6273fCcCDEa53
+
+Verifying contract TimelockTest at 0xEEF6f78Ee0d64A22Da56d5B6ACd6273fCcCDEa53 with TimelockTest#constructor[admin_='0xf7fe578C81788A551E6c3Efa54501F463CE26af7', delay_=Number<60e0>]
+
+Contract TimelockTest verified on Etherscan at https://rinkeby.etherscan.io/address/0xEEF6f78Ee0d64A22Da56d5B6ACd6273fCcCDEa53
+
+Running action Build<Unitroller#comptroller [b73e68c], {
+  max_assets: Number<20e0>
+  close_factor: Number<5e17>
+  oracle: #oracle
+  generation: 'g1'
+  implementation: #g1
+  admin: $sender
+}>...
+
+Deploying Contract `Unitroller#constructor[]`
+
+Running Ethereum Trx: 0xac17dedb32e8f9ac33bd6b303fef9ec6573aac8565d6bae58181c64dc9d250d2
+Contract Unitroller deployed to 0x6Ad8de99561d2B585ce1597cef3078cA1Fc20899
+
+Verifying contract Unitroller at 0x6Ad8de99561d2B585ce1597cef3078cA1Fc20899 with Unitroller#constructor[]
+
+Contract Unitroller verified on Etherscan at https://rinkeby.etherscan.io/address/0x6Ad8de99561d2B585ce1597cef3078cA1Fc20899
+
+Setting implementation...
+{
+  properties: {
+    max_assets: { type: 'number', base: 20, exp: 0 },
+    close_factor: { type: 'number', base: 5, exp: 17 },
+    oracle: { type: 'ref', ref: 'oracle' },
+    generation: 'g1',
+    implementation: { type: 'ref', ref: 'g1' },
+    admin: { type: 'account', account: 'sender' }
+  }
+}
+Executing Trx `Unitroller#_setPendingImplementation(address)[#g1]`
+
+Running Ethereum Trx: 0x71db1b84a5ba6f6d649e04c00a332c0dfc155561bce5a471d8e3f2f9dd6609a4
+Executing Trx `ComptrollerG1#_become(Unitroller unitroller, PriceOracle _oracle, uint _closeFactorMantissa, uint _maxAssets, bool reinitializing)[unitroller={
+  address: '0x6Ad8de99561d2B585ce1597cef3078cA1Fc20899',
+  definition: 'Unitroller',
+  deployment: { block: 9118004, constructorData: '', contract: 'Unitroller' },
+  verified: true
+}, _oracle=#oracle, _closeFactorMantissa=Number<5e17>, _maxAssets=Number<20e0>, reinitializing=false]`
+
+Running Ethereum Trx: 0x30199ab354fa19f238e271f02f76ba6e8e918087125e2890f68f05a0e59e3ff8
+Setting oracle...
+Executing Trx `Unitroller#_setPriceOracle(address)[#oracle]`
+
+Running Ethereum Trx: 0xe2ecd6d2615414db22de0b11d91441551c31ce074b7b95719f763dc11478eef5
+Setting max assets...
+Executing Trx `Unitroller#_setMaxAssets(uint newMaxAssets)[Number<20e0>]`
+
+Running Ethereum Trx: 0x7043d6789aec682e990b56ea5b9f798c6797218d45ff497aa735827df530b3d8
+Setting close factor...
+Executing Trx `Unitroller#_setCloseFactor(uint newCloseFactorMantissa)[Number<5e17>]`
+
+Running Ethereum Trx: 0x082c7e51e66b1fca5527a1f374e2511b99a7080dbd70416b4cf74f45a3ea7a04
+Setting admin...
+Running action Build<CErc20Immutable#cZRX [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope3000bps
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e26>
+  underlying: #zrx
+  name: 'Compound ZRX'
+  symbol: 'cZRX'
+  type: 'immutable'
+  decimals: 8
+}>...
+
+Deploying Contract `CErc20Immutable#constructor[underlying_=#zrx, comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope3000bps, initialExchangeRateMantissa_=Number<2e26>, name_='Compound ZRX', symbol_='cZRX', decimals_=8, admin_=$sender]`
+
+Running Ethereum Trx: 0x943fe9f2df73a29ab6edc6f668371ff864a8203e795d9299663583937fb8e223
+Contract CErc20Immutable deployed to 0x9cCA0474fc90d7B960eabb53f6226E9D48ae0313
+
+Verifying contract CErc20Immutable at 0x9cCA0474fc90d7B960eabb53f6226E9D48ae0313 with CErc20Immutable#constructor[underlying_=#zrx, comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope3000bps, initialExchangeRateMantissa_=Number<2e26>, name_='Compound ZRX', symbol_='cZRX', decimals_=8, admin_=$sender]
+
+Contract CErc20Immutable verified on Etherscan at https://rinkeby.etherscan.io/address/0x9cCA0474fc90d7B960eabb53f6226E9D48ae0313
+
+Running action Build<CErc20Immutable#cWBTC [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope3000bps
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e16>
+  underlying: #wbtc
+  name: 'Compound WBTC'
+  symbol: 'cWBTC'
+  type: 'immutable'
+  decimals: 8
+}>...
+
+Deploying Contract `CErc20Immutable#constructor[underlying_=#wbtc, comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope3000bps, initialExchangeRateMantissa_=Number<2e16>, name_='Compound WBTC', symbol_='cWBTC', decimals_=8, admin_=$sender]`
+
+Running Ethereum Trx: 0xbb9bcaea3ac3a6293dfb6b09d036b587be3a3a21efc4934f586ebaf78ccd5499
+Contract CErc20Immutable deployed to 0x5Fc51e815369Ec3bc5a3fD76399b7BfA373633f3
+
+Verifying contract CErc20Immutable at 0x5Fc51e815369Ec3bc5a3fD76399b7BfA373633f3 with CErc20Immutable#constructor[underlying_=#wbtc, comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope3000bps, initialExchangeRateMantissa_=Number<2e16>, name_='Compound WBTC', symbol_='cWBTC', decimals_=8, admin_=$sender]
+
+Contract CErc20Immutable verified on Etherscan at https://rinkeby.etherscan.io/address/0x5Fc51e815369Ec3bc5a3fD76399b7BfA373633f3
+
+Running action Build<CErc20Delegator#cUSDT [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope2000bps_Jump20000bps_Kink90
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e14>
+  underlying: #usdt
+  name: 'Compound USDT'
+  symbol: 'cUSDT'
+  type: 'delegator'
+  decimals: 8
+  become_implementation_data: '0x'
+}>...
+
+Deploying Contract `CErc20Delegator#constructor[underlying_=#usdt, comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope2000bps_Jump20000bps_Kink90, initialExchangeRateMantissa_=Number<2e14>, name_='Compound USDT', symbol_='cUSDT', decimals_=8, admin_=$sender, implementation_=#cErc20Delegate, becomeImplementationData='0x']`
+
+Running Ethereum Trx: 0x74ad45063c93a695ab60ad5f3e40b0304796ba02f966bb0c14c70c18d69c1787
+Contract CErc20Delegator deployed to 0x3125fe29CC9E385B34Ff7af6D0Da77Cb9B98e2C7
+
+Verifying contract CErc20Delegator at 0x3125fe29CC9E385B34Ff7af6D0Da77Cb9B98e2C7 with CErc20Delegator#constructor[underlying_=#usdt, comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope2000bps_Jump20000bps_Kink90, initialExchangeRateMantissa_=Number<2e14>, name_='Compound USDT', symbol_='cUSDT', decimals_=8, admin_=$sender, implementation_=#cErc20Delegate, becomeImplementationData='0x']
+
+Contract CErc20Delegator verified on Etherscan at https://rinkeby.etherscan.io/address/0x3125fe29CC9E385B34Ff7af6D0Da77Cb9B98e2C7
+
+Running action Build<CErc20Immutable#cUSDC [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope1000bps
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e14>
+  underlying: #usdc
+  name: 'Compound USDC'
+  symbol: 'cUSDC'
+  type: 'immutable'
+  decimals: 8
+}>...
+
+Deploying Contract `CErc20Immutable#constructor[underlying_=#usdc, comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope1000bps, initialExchangeRateMantissa_=Number<2e14>, name_='Compound USDC', symbol_='cUSDC', decimals_=8, admin_=$sender]`
+
+Running Ethereum Trx: 0xf3617fbb151e3a811423e57cccf0065058f1f6bf3a19a1f8d9be3309121b25c6
+Contract CErc20Immutable deployed to 0x3b4195d6938a44f0fC22579E80daC09F9E4bc832
+
+Verifying contract CErc20Immutable at 0x3b4195d6938a44f0fC22579E80daC09F9E4bc832 with CErc20Immutable#constructor[underlying_=#usdc, comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope1000bps, initialExchangeRateMantissa_=Number<2e14>, name_='Compound USDC', symbol_='cUSDC', decimals_=8, admin_=$sender]
+
+Contract CErc20Immutable verified on Etherscan at https://rinkeby.etherscan.io/address/0x3b4195d6938a44f0fC22579E80daC09F9E4bc832
+
+Running action Build<CEther#cETH [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope1000bps
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e26>
+  name: 'Compound ETH'
+  symbol: 'cETH'
+  type: 'cether'
+  decimals: 8
+}>...
+
+Deploying Contract `CEther#constructor[comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope1000bps, initialExchangeRateMantissa_=Number<2e26>, name_='Compound ETH', symbol_='cETH', decimals_=8, admin_=$sender]`
+
+Running Ethereum Trx: 0x04a01d4e0ec9768784142a0c4908cecf399accf7176fe001267ed70064e0d8e1
+Contract CEther deployed to 0x0C1CaBC652cF4BC27c8c265B41d33Bd0EEeEABAB
+
+Verifying contract CEther at 0x0C1CaBC652cF4BC27c8c265B41d33Bd0EEeEABAB with CEther#constructor[comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope1000bps, initialExchangeRateMantissa_=Number<2e26>, name_='Compound ETH', symbol_='cETH', decimals_=8, admin_=$sender]
+
+Contract CEther verified on Etherscan at https://rinkeby.etherscan.io/address/0x0C1CaBC652cF4BC27c8c265B41d33Bd0EEeEABAB
+
+Running action Build<CErc20Immutable#cSAI [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base500bps_Slope1200bps
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e26>
+  underlying: #sai
+  name: 'Compound SAI'
+  symbol: 'cSAI'
+  type: 'immutable'
+  decimals: 8
+}>...
+
+Deploying Contract `CErc20Immutable#constructor[underlying_=#sai, comptroller_=#comptroller, interestRateModel_=#Base500bps_Slope1200bps, initialExchangeRateMantissa_=Number<2e26>, name_='Compound SAI', symbol_='cSAI', decimals_=8, admin_=$sender]`
+
+Running Ethereum Trx: 0x7d5c8641fef04011826b9e9e4807899ca8f62e8941e495ec298a9bd500b9d8df
+Contract CErc20Immutable deployed to 0xdC7004c2e510Fa0A3f2A991f4b683Fd267c11132
+
+Verifying contract CErc20Immutable at 0xdC7004c2e510Fa0A3f2A991f4b683Fd267c11132 with CErc20Immutable#constructor[underlying_=#sai, comptroller_=#comptroller, interestRateModel_=#Base500bps_Slope1200bps, initialExchangeRateMantissa_=Number<2e26>, name_='Compound SAI', symbol_='cSAI', decimals_=8, admin_=$sender]
+
+Contract CErc20Immutable verified on Etherscan at https://rinkeby.etherscan.io/address/0xdC7004c2e510Fa0A3f2A991f4b683Fd267c11132
+
+Running action Build<CErc20Immutable#cREP [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope3000bps
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e26>
+  underlying: #rep
+  name: 'Compound REP'
+  symbol: 'cREP'
+  type: 'immutable'
+  decimals: 8
+}>...
+
+Deploying Contract `CErc20Immutable#constructor[underlying_=#rep, comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope3000bps, initialExchangeRateMantissa_=Number<2e26>, name_='Compound REP', symbol_='cREP', decimals_=8, admin_=$sender]`
+
+Running Ethereum Trx: 0xc331f2f44112a67ac22fb61e0616d6eb3c1b52ffec8efb4fda6bc5eda3515392
+Contract CErc20Immutable deployed to 0x41dFEcA3D74159d22a7dc07B78d9AE98Db1D7937
+
+Verifying contract CErc20Immutable at 0x41dFEcA3D74159d22a7dc07B78d9AE98Db1D7937 with CErc20Immutable#constructor[underlying_=#rep, comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope3000bps, initialExchangeRateMantissa_=Number<2e26>, name_='Compound REP', symbol_='cREP', decimals_=8, admin_=$sender]
+
+Contract CErc20Immutable verified on Etherscan at https://rinkeby.etherscan.io/address/0x41dFEcA3D74159d22a7dc07B78d9AE98Db1D7937
+
+Running action Build<CErc20Delegator#cDAI [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope1000bps
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e26>
+  underlying: #dai
+  name: 'Compound DAI'
+  symbol: 'cDAI'
+  type: 'delegator'
+  decimals: 8
+  become_implementation_data: '0x'
+}>...
+
+Deploying Contract `CErc20Delegator#constructor[underlying_=#dai, comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope1000bps, initialExchangeRateMantissa_=Number<2e26>, name_='Compound DAI', symbol_='cDAI', decimals_=8, admin_=$sender, implementation_=#cErc20Delegate, becomeImplementationData='0x']`
+
+Running Ethereum Trx: 0x532a5bc297983b5871c98926f1910f7acd9ce112a0c98f0be3b4a04ad0fef3a8
+Contract CErc20Delegator deployed to 0x5Df444DDeec02da8d0CEc33EE35f1522c1Cb75E9
+
+Verifying contract CErc20Delegator at 0x5Df444DDeec02da8d0CEc33EE35f1522c1Cb75E9 with CErc20Delegator#constructor[underlying_=#dai, comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope1000bps, initialExchangeRateMantissa_=Number<2e26>, name_='Compound DAI', symbol_='cDAI', decimals_=8, admin_=$sender, implementation_=#cErc20Delegate, becomeImplementationData='0x']
+
+Contract CErc20Delegator verified on Etherscan at https://rinkeby.etherscan.io/address/0x5Df444DDeec02da8d0CEc33EE35f1522c1Cb75E9
+
+Running action Build<CErc20Immutable#cBAT [b73e68c], {
+  admin: $sender
+  interest_rate_model: #Base200bps_Slope3000bps
+  delegate: #cErc20Delegate
+  comptroller: #comptroller
+  initial_exchange_rate: Number<2e26>
+  underlying: #bat
+  name: 'Compound BAT'
+  symbol: 'cBAT'
+  type: 'immutable'
+  decimals: 8
+}>...
+
+Deploying Contract `CErc20Immutable#constructor[underlying_=#bat, comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope3000bps, initialExchangeRateMantissa_=Number<2e26>, name_='Compound BAT', symbol_='cBAT', decimals_=8, admin_=$sender]`
+
+Running Ethereum Trx: 0x9b51dbe3ccf7ce70417bf1b06dd8e7dcb1168dd162c16d284f3d02d537b8ea42
+Contract CErc20Immutable deployed to 0x1e81709B735d9F536B224d47f28bDd3606e6C96d
+
+Verifying contract CErc20Immutable at 0x1e81709B735d9F536B224d47f28bDd3606e6C96d with CErc20Immutable#constructor[underlying_=#bat, comptroller_=#comptroller, interestRateModel_=#Base200bps_Slope3000bps, initialExchangeRateMantissa_=Number<2e26>, name_='Compound BAT', symbol_='cBAT', decimals_=8, admin_=$sender]
+
+Contract CErc20Immutable verified on Etherscan at https://rinkeby.etherscan.io/address/0x1e81709B735d9F536B224d47f28bDd3606e6C96d
+
+Running action Update<KyberNetworkCrystal#knc kyber, +balances>...
+
+Executing Trx `KyberNetworkCrystal#transfer['#fauceteer',BN<5376344000000000000000000>]`
+
+Running Ethereum Trx: 0xa7675defe55ba9f6e863e9c581c7495df874001a8774eb862fd8aa2f79385c53
+Running action Update<LinkToken#link chainlink, +balances>...
+
+Executing Trx `LinkToken#transfer['#fauceteer',BN<2100840000000000000000000>]`
+
+Running Ethereum Trx: 0x31f3cde28ca74b3f190ddd34ce47bb1a657d28cabedd4ca61b83b404275a9d77
+Running action Update<ZRXToken#zrx zrx, +balances>...
+
+Executing Trx `ZRXToken#transfer['#fauceteer',BN<29687685000000000000000000>]`
+
+Running Ethereum Trx: 0x5ef48e16fbd63994ec1f72d242421e46d3fd6a61e4c06a6650383a5a5c0738b1
+Running action Update<FaucetToken#wbtc compound-test, +balances>...
+
+Executing Trx `FaucetToken#transfer['#fauceteer',BN<108800000000>]`
+
+Running Ethereum Trx: 0x94ad8698c99192973a13bb978c119b93484779e55dffcf4cedebaf3b6a0305c2
+Running action Update<TetherToken#usdt usdt, +balances>...
+
+Executing Trx `TetherToken#transfer['#fauceteer',BN<10000000000000>]`
+
+Running Ethereum Trx: 0x3e50bd1bcbe0423353907809fe5f0edf934f845921d10f1f2912270d2836e990
+Running action Update<FaucetToken#usdc compound-test, +balances>...
+
+Executing Trx `FaucetToken#transfer['#fauceteer',BN<10000000000000>]`
+
+Running Ethereum Trx: 0xa2fd86d1965950ebe0bbf688cae378043997d6adbd0eb699eb481388486bf9b6
+Running action Update<FaucetToken#sai compound-test, +balances>...
+
+Executing Trx `FaucetToken#transfer['#fauceteer',BN<8299054000000000000000000>]`
+
+Running Ethereum Trx: 0x47ecdc9e5134661ac20c602b4be05fab6d656bc52de48b31e6df00f13680076a
+Running action Update<FaucetToken#rep compound-test, +balances>...
+
+Executing Trx `FaucetToken#transfer['#fauceteer',BN<785545000000000000000000>]`
+
+Running Ethereum Trx: 0xb263fbfe90bd212f6fb76e8a6dfa841080bcc7b6d8c851b9218bee47eda9abac
+Running action Update<FaucetToken#dai compound-test, +balances>...
+
+Executing Trx `FaucetToken#transfer['#fauceteer',BN<10000000000000000000000000>]`
+
+Running Ethereum Trx: 0x6338beaab4bda2a7988c802355a6b8dada628a62dce2fef3dd9242afb298ef9a
+Running action Update<BAToken#bat bat, +balances>...
+
+Executing Trx `BAToken#transfer['#fauceteer',BN<48460412000000000000000000>]`
+
+Running Ethereum Trx: 0x93455de8f340d2f706e267a2f9d746a9db04121ff26cf042bd0d42d07c2c69ac
+Running action Build<Reservoir#reservoir [e0a16ae], {
+  target: #comptroller
+  token: #comp
+  drip_rate: Number<5e17>
+}>...
+
+Deploying Contract `Reservoir#constructor[dripRate_=Number<5e17>, token_=#comp, target_=#comptroller]`
+
+Running Ethereum Trx: 0x3b3c52823978dc04a6030c8168917c7786583d3a4007afc11e93581cc0460863
+Contract Reservoir deployed to 0xa23FAfc67E6288556B4281C47A07F66813E71D51
+
+Verifying contract Reservoir at 0xa23FAfc67E6288556B4281C47A07F66813E71D51 with Reservoir#constructor[dripRate_=Number<5e17>, token_=#comp, target_=#comptroller]
+
+Contract Reservoir verified on Etherscan at https://rinkeby.etherscan.io/address/0xa23FAfc67E6288556B4281C47A07F66813E71D51
+
+Running action Update<Comp#comp b73e68c, +balances>...
+
+Executing Trx `Comp#transfer['#fauceteer',BN<1000000000000000000000000>]`
+
+Running Ethereum Trx: 0xb2c96dce1856f543aa1670a6996b08338e382d4b7b227f8028bd9f7fe8d59fd3
+Executing Trx `Comp#transfer['#reservoir',BN<4000000000000000000000000>]`
+
+Running Ethereum Trx: 0x12528f6567c7d7fe90f85a1dbe3802895c27bc13ada2d1bf82ac7c8575ef82ca
+Running action Build<GovernorAlphaHarness#gov [compound-test], {
+  timelock: #timelock
+  comp: #comp
+  harness: true
+}>...
+
+Deploying Contract `GovernorAlphaHarness#constructor[timelock_=#timelock, comp_=#comp, guardian_='0xf7fe578C81788A551E6c3Efa54501F463CE26af7']`
+
+Running Ethereum Trx: 0x9318e6c2c7506526a203c94ee79aace794327443299dfc9b97ee9afa7dd40821
+Contract GovernorAlphaHarness deployed to 0x0497D4081F91D9EAF809deFe83548c0C6b07F02a
+
+Verifying contract GovernorAlphaHarness at 0x0497D4081F91D9EAF809deFe83548c0C6b07F02a with GovernorAlphaHarness#constructor[timelock_=#timelock, comp_=#comp, guardian_='0xf7fe578C81788A551E6c3Efa54501F463CE26af7']
+
+Contract GovernorAlphaHarness verified on Etherscan at https://rinkeby.etherscan.io/address/0x0497D4081F91D9EAF809deFe83548c0C6b07F02a
+
+Running action Update<TimelockTest#timelock compound-test, +admin>...
+
+Executing Trx `TimelockTest#harnessSetAdmin[#gov]`
+
+Running Ethereum Trx: 0xbb81d240fdf8c4be799d7d9dfb99b9518b09b1b38ba32616aafd2520b8c18de1
+Running action Update<Unitroller#comptroller b73e68c, +collateral_factors,supported_markets>...
+
+Executing Trx `Unitroller#_supportMarket(address)[#cBAT]`
+
+Running Ethereum Trx: 0xba16cb7fef9480ec2f797806d2a393c509877906eb3b93912a88848c2d3fb58b
+Executing Trx `Unitroller#_supportMarket(address)[#cDAI]`
+
+Running Ethereum Trx: 0x191e2313537c5e33b63a82df8ce931012cfb47c088557699a1afa98dbbfbe704
+Executing Trx `Unitroller#_supportMarket(address)[#cREP]`
+
+Running Ethereum Trx: 0xc91866fb69b6895b8295898968fcde391afced537a67c54b9c4b58d2b7c2143a
+Executing Trx `Unitroller#_supportMarket(address)[#cSAI]`
+
+Running Ethereum Trx: 0x2744e5d2ce8fd20b06d40581bbfd4b550f9f6de13e53260742b5522b03dfdef6
+Executing Trx `Unitroller#_supportMarket(address)[#cETH]`
+
+Running Ethereum Trx: 0xa6940284fe1310a6c44a1076c9446d91efd60eb5a2a48d1236612dc3d73169eb
+Executing Trx `Unitroller#_supportMarket(address)[#cUSDC]`
+
+Running Ethereum Trx: 0x3a0a78f4f664457da4f7913d8870490ac7e8d3a13ffaf25b9388cee18ebe9497
+Executing Trx `Unitroller#_supportMarket(address)[#cUSDT]`
+
+Running Ethereum Trx: 0xa7b1de22ab1fb19096f100b44fa2c8e253ea02157e8c6844959cd3c52253db38
+Executing Trx `Unitroller#_supportMarket(address)[#cWBTC]`
+
+Running Ethereum Trx: 0x6fa7085a0c98251fa10cb4f36f99bc61fe7865f07f73ed05b1b6a5cb98af7b08
+Executing Trx `Unitroller#_supportMarket(address)[#cZRX]`
+
+Running Ethereum Trx: 0x35de1d2a3f92ba157c16bd235418b9ebdd0d87e8fd4bb8b34624c05c46531ee9
+Executing Trx `Unitroller#_setCollateralFactor(address,uint)['#cBAT',BN<600000000000000000>]`
+
+Running Ethereum Trx: 0x2a9bc6ca1b7db6f8b238f5abcfba343dec80af004621b55d981e398bdd051998
+Executing Trx `Unitroller#_setCollateralFactor(address,uint)['#cDAI',BN<750000000000000000>]`
+
+Running Ethereum Trx: 0x232b073f0d4c786fcd40c44332b6741cf4360b6c3bc9c65e2b7e73679b19c3d1
+Executing Trx `Unitroller#_setCollateralFactor(address,uint)['#cREP',BN<400000000000000000>]`
+
+Running Ethereum Trx: 0x7147137ef9f275a2f47a1f0be9a1df559ef15ea2c3cf1407207d4fcfa71db967
+Executing Trx `Unitroller#_setCollateralFactor(address,uint)['#cSAI',BN<650000000000000000>]`
+
+Running Ethereum Trx: 0x8bd31364c237ca64bef1de9670a6531c3ae229ea9c07e5f638ed0192d421ccd5
+Executing Trx `Unitroller#_setCollateralFactor(address,uint)['#cETH',BN<750000000000000000>]`
+
+Running Ethereum Trx: 0xbd8750677381496e34947a88edf83f79630d094ba7e6239b0f7f56bd3b5fb797
+Executing Trx `Unitroller#_setCollateralFactor(address,uint)['#cUSDC',BN<750000000000000000>]`
+
+Running Ethereum Trx: 0xea6e87a96a0eef912207a96f3cff35e1edd5a23a32066e811ee9d142e781f896
+Executing Trx `Unitroller#_setCollateralFactor(address,uint)['#cZRX',BN<600000000000000000>]`
+
+Running Ethereum Trx: 0x06c9a9b72655709b3ef44a2c9bb2677a7bba2d81fddf288073fbbabf5836aa06
+Running action Build<Maximillion#max [b73e68c], {
+  cEther: #cETH
+}>...
+
+Deploying Contract `Maximillion#constructor[#cETH]`
+
+Running Ethereum Trx: 0xcb43aded7a29d85b59dcd2a3794748378e73810c7a7cfba0c62cbf74cb99c342
+Contract Maximillion deployed to 0x99C0b21f03Ae92B6aF8C73f17053798578EF9E59
+
+Verifying contract Maximillion at 0x99C0b21f03Ae92B6aF8C73f17053798578EF9E59 with Maximillion#constructor[#cETH]
+
+Contract Maximillion verified on Etherscan at https://rinkeby.etherscan.io/address/0x99C0b21f03Ae92B6aF8C73f17053798578EF9E59
+
+Saved networks ABI file: /root/compound-eureka/networks/ropsten-abi.json
+Saved networks file: /root/compound-eureka/networks/ropsten.json
+Wrote final state to file /root/compound-eureka/state/ropsten-state.json
+
+Done in 2084.47s.

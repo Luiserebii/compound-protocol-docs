@@ -19,6 +19,7 @@ Compiling is simple:
 yarn compile
 ```
 <script id="asciicast-KKD6834A608k84sb0aqyHILm9" src="https://asciinema.org/a/KKD6834A608k84sb0aqyHILm9.js" async data-autoplay="true"></script>
+##### Compilation output on an Ubuntu Linux 20.04 LTS machine
 
 ## Testing
 

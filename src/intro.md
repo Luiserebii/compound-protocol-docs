@@ -10,7 +10,7 @@ This guide is written for the [`compound-protocol`](https://github.com/compound-
 
 ## On the Guide
 
-This guide assumes an installation of a modern Debian distribution: specifically, this guide has been written testing Ubuntu Linux 20.04LTS. This guide will work similarly for other UNIX-like operating systems (e.g. Arch, macOS), but will require some knowledge of the system's package manager and other subtleties.
+This guide assumes an installation of a modern Debian distribution: specifically, this guide has been written testing Ubuntu Linux 20.04 LTS. This guide will work similarly for other UNIX-like operating systems (e.g. Arch, macOS), but will require some knowledge of the system's package manager and other specifics.
 
 ## Compound Protocol
 
