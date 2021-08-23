@@ -1,0 +1,340 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>compound-protocol - A Thorough Guide to Deploying Compound Protocol</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../getting-started/configuration.html"><strong aria-hidden="true">2.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../getting-started/script.html"><strong aria-hidden="true">2.3.</strong> Automate Setup via Script</a></li></ol></li><li class="chapter-item expanded "><a href="../build-compound.html"><strong aria-hidden="true">3.</strong> Building Compound Protocol</a></li><li class="chapter-item expanded "><a href="../deploy-compound/index.html"><strong aria-hidden="true">4.</strong> Deploying Compound Protocol</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../deploy-compound/deploy-via-eureka.html"><strong aria-hidden="true">4.1.</strong> Deploying via Eureka</a></li><li class="chapter-item expanded "><a href="../deploy-compound/alternate-testnets.html"><strong aria-hidden="true">4.2.</strong> Deploying to Alternate Testnets (e.g. Rinkeby)</a></li><li class="chapter-item expanded "><a href="../deploy-compound/tips.html"><strong aria-hidden="true">4.3.</strong> Tips</a></li></ol></li><li class="chapter-item expanded "><a href="../under-the-hood/index.html"><strong aria-hidden="true">5.</strong> Under the Hood</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../under-the-hood/core.html"><strong aria-hidden="true">5.1.</strong> Compound Core</a></li><li class="chapter-item expanded "><a href="../under-the-hood/governance.html"><strong aria-hidden="true">5.2.</strong> Compound Core + Governance</a></li></ol></li><li class="chapter-item expanded "><a href="../troubleshooting/index.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../troubleshooting/compound-protocol.html" class="active"><strong aria-hidden="true">6.1.</strong> compound-protocol</a></li><li class="chapter-item expanded "><a href="../troubleshooting/compound-eureka.html"><strong aria-hidden="true">6.2.</strong> compound-eureka</a></li></ol></li><li class="chapter-item expanded "><a href="../credits.html"><strong aria-hidden="true">7.</strong> Credits</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">A Thorough Guide to Deploying Compound Protocol</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="compound-protocol"><a class="header" href="#compound-protocol">compound-protocol</a></h1>
+<h2 id="unknown-option-p"><a class="header" href="#unknown-option-p"><code>Unknown option: p</code></a></h2>
+<p>When running one of the package scripts, like <code>yarn test</code>, the output errors and stops, displaying:</p>
+<pre><code>Unknown option: p
+Type shasum -h for help
+Unknown option: p
+Type shasum -h for help
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+</code></pre>
+<p>As of the commit written to this guide, this fix has been merged as of <a href="https://github.com/compound-finance/compound-protocol/commit/eb7a6c9831198a19736bc4c1f8f66d41b98f4eaf">eb7a6c9</a>, but as the error appeared during the writing of this guide, it will be mentioned. Chances are, if you have this error, you have checked out an earlier commit of Compound protocol.</p>
+<p>To fix this error which is relevant to a newer version of <code>shasum</code>, make the changes to the files described in this pull request: <a href="https://github.com/compound-finance/compound-protocol/pull/80/files">https://github.com/compound-finance/compound-protocol/pull/80/files</a>.</p>
+<h2 id="error-source-file-requires-different-compiler-version-current-compiler-is-xxxcommitxxxxxxxxxxxxxx"><a class="header" href="#error-source-file-requires-different-compiler-version-current-compiler-is-xxxcommitxxxxxxxxxxxxxx"><code>Error: Source file requires different compiler version (current compiler is x.x.x+commit.xxxxxxxx.xxx.xxx)</code></a></h2>
+<p><code>solc</code> v0.5.16+ is required to compile the current smart contracts. The solution is to install that version of <code>solc</code> to your computer. To install, please see the <a href="../getting-started/installation.html#solc-v0516">Installation section on solc</a>.</p>
+<h2 id="typeerror-objectfromentries-is-not-a-function"><a class="header" href="#typeerror-objectfromentries-is-not-a-function"><code>TypeError: Object.fromEntries is not a function</code></a></h2>
+<p>If you're getting this error, you are likely on an older version of node (check <code>node -v</code>). Chances are, you have installed node from the <code>apt</code> package manager, which installs Node 10.x. Due to the requirement of a version of Node below 14+ for <code>compound-eureka</code>, I recommend that you install Node 13.x. To install, please see the <a href="../getting-started/installation.html#node-13x">Installation section on Node</a>.</p>
+<h2 id="libusblibusboslinux_udevc4010-fatal-error-libudevh-no-such-file-or-directory"><a class="header" href="#libusblibusboslinux_udevc4010-fatal-error-libudevh-no-such-file-or-directory"><code>../libusb/libusb/os/linux_udev.c:40:10: fatal error: libudev.h: No such file or directory</code></a></h2>
+<p>This error may appear when installing packages in the initial setup phase. The full error output may look like:</p>
+<pre><code class="language-sh">root@ubuntu-s-2vcpu-4gb-intel-tor1-01:~/compound-protocol# yarn install --lock-file
+yarn install v1.22.11
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+info fsevents@1.2.11: The platform &quot;linux&quot; is incompatible with this module.
+info &quot;fsevents@1.2.11&quot; is an optional dependency and failed compatibility check. Excluding it from installation.
+info fsevents@2.1.2: The platform &quot;linux&quot; is incompatible with this module.
+info &quot;fsevents@2.1.2&quot; is an optional dependency and failed compatibility check. Excluding it from installation.
+[3/4] Linking dependencies...
+warning &quot;eth-saddle &gt; web3-provider-engine &gt; eth-block-tracker &gt; @babel/plugin-transform-runtime@7.8.3&quot; has unmet peer dependency &quot;@babel/core@^7.0.0-0&quot;.
+[4/4] Building fresh packages...
+[11/32] ⡀ usb
+[10/32] ⡀ node-hid
+[3/32] ⢀ sha3
+[4/32] ⢀ keccak
+warning Error running install script for optional dependency: &quot;/root/compound-protocol/node_modules/node-hid: Command failed.
+Exit code: 1
+Command: prebuild-install || node-gyp rebuild
+Arguments:
+Directory: /root/compound-protocol/node_modules/node-hid
+Output:
+prebuild-install WARN install No prebuilt binaries found (target=14.17.4 runtime=node arch=x64 libc= platform=linux)
+gyp info it worked if it ends with ok
+gyp info using node-gyp@5.1.0
+gyp info using node@14.17.4 | linux | x64
+gyp info find Python using Python version 3.8.5 found at \&quot;/usr/bin/python3\&quot;
+gyp info spawn /usr/bin/python3
+gyp info spawn args [
+gyp info spawn args   '/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp_main.py',
+gyp info spawn args   'binding.gyp',
+gyp info spawn args   '-f',
+gyp info spawn args   'make',
+gyp info spawn args   '-I',
+gyp info spawn args   '/root/compound-protocol/node_modules/node-hid/build/config.gypi',
+gyp info spawn args   '-I',
+gyp info spawn args   '/usr/lib/node_modules/npm/node_modules/node-gyp/addon.gypi',
+gyp info spawn args   '-I',
+gyp info spawn args   '/root/.cache/node-gyp/14.17.4/include/node/common.gypi',
+gyp info spawn args   '-Dlibrary=shared_library',
+gyp info spawn args   '-Dvisibility=default',
+gyp info spawn args   '-Dnode_root_dir=/root/.cache/node-gyp/14.17.4',
+gyp info spawn args   '-Dnode_gyp_dir=/usr/lib/node_modules/npm/node_modules/node-gyp',
+gyp info spawn args   '-Dnode_lib_file=/root/.cache/node-gyp/14.17.4/&lt;(target_arch)/node.lib',
+gyp info spawn args   '-Dmodule_root_dir=/root/compound-protocol/node_modules/node-hid',
+gyp info spawn args   '-Dnode_engine=v8',
+gyp info spawn args   '--depth=.',
+gyp info spawn args   '--no-parallel',
+gyp info spawn args   '--generator-output',
+gyp info spawn args   'build',
+gyp info spawn args   '-Goutput_dir=.'
+gyp info spawn args ]
+gyp info spawn make
+gyp info spawn args [ 'BUILDTYPE=Release', '-C', 'build' ]
+make: Entering directory '/root/compound-protocol/node_modules/node-hid/build'
+  CC(target) Release/obj.target/hidapi-linux-hidraw/hidapi/linux/hid.o
+../hidapi/linux/hid.c:44:10: fatal error: libudev.h: No such file or directory
+   44 | #include &lt;libudev.h&gt;
+      |          ^~~~~~~~~~~
+compilation terminated.
+make: *** [hidapi-linux-hidraw.target.mk:111: Release/obj.target/hidapi-linux-hidraw/hidapi/linux/hid.o] Error 1
+make: Leaving directory '/root/compound-protocol/node_modules/node-hid/build'
+gyp ERR! build error
+gyp ERR! stack Error: `make` failed with exit code: 2
+gyp ERR! stack     at ChildProcess.onExit (/usr/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:194:23)
+gyp ERR! stack     at ChildProcess.emit (events.js:400:28)
+gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12)
+gyp ERR! System Linux 5.4.0-73-generic
+gyp ERR! command \&quot;/usr/bin/node\&quot; \&quot;/usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js\&quot; \&quot;rebuild\&quot;
+gyp ERR! cwd /root/compound-protocol/node_modules/node-hid
+[11/32] ⠄ usb
+[12/32] ⠄ websocket
+[-/32] ⡀ waiting...
+[-/32] ⡀ waiting...
+warning Error running install script for optional dependency: &quot;/root/compound-protocol/node_modules/usb: Command failed.
+Exit code: 1
+Command: prebuild-install --verbose || node-gyp rebuild
+Arguments:
+Directory: /root/compound-protocol/node_modules/usb
+Output:
+prebuild-install info begin Prebuild-install version 5.3.3
+prebuild-install info looking for cached prebuild @ /root/.npm/_prebuilds/f28b5a-usb-v1.6.2-node-v83-linux-x64.tar.gz
+prebuild-install http request GET https://github.com/tessel/node-usb/releases/download/v1.6.2/usb-v1.6.2-node-v83-linux-x64.tar.gz
+prebuild-install http 404 https://github.com/tessel/node-usb/releases/download/v1.6.2/usb-v1.6.2-node-v83-linux-x64.tar.gz
+prebuild-install WARN install No prebuilt binaries found (target=14.17.4 runtime=node arch=x64 libc= platform=linux)
+gyp info it worked if it ends with ok
+gyp info using node-gyp@5.1.0
+gyp info using node@14.17.4 | linux | x64
+gyp info find Python using Python version 3.8.5 found at \&quot;/usr/bin/python3\&quot;
+gyp info spawn /usr/bin/python3
+gyp info spawn args [
+gyp info spawn args   '/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp_main.py',
+gyp info spawn args   'binding.gyp',
+gyp info spawn args   '-f',
+gyp info spawn args   'make',
+gyp info spawn args   '-I',
+gyp info spawn args   '/root/compound-protocol/node_modules/usb/build/config.gypi',
+gyp info spawn args   '-I',
+gyp info spawn args   '/usr/lib/node_modules/npm/node_modules/node-gyp/addon.gypi',
+gyp info spawn args   '-I',
+gyp info spawn args   '/root/.cache/node-gyp/14.17.4/include/node/common.gypi',
+gyp info spawn args   '-Dlibrary=shared_library',
+gyp info spawn args   '-Dvisibility=default',
+gyp info spawn args   '-Dnode_root_dir=/root/.cache/node-gyp/14.17.4',
+gyp info spawn args   '-Dnode_gyp_dir=/usr/lib/node_modules/npm/node_modules/node-gyp',
+gyp info spawn args   '-Dnode_lib_file=/root/.cache/node-gyp/14.17.4/&lt;(target_arch)/node.lib',
+gyp info spawn args   '-Dmodule_root_dir=/root/compound-protocol/node_modules/usb',
+gyp info spawn args   '-Dnode_engine=v8',
+gyp info spawn args   '--depth=.',
+gyp info spawn args   '--no-parallel',
+gyp info spawn args   '--generator-output',
+gyp info spawn args   'build',
+gyp info spawn args   '-Goutput_dir=.'
+gyp info spawn args ]
+gyp info spawn make
+gyp info spawn args [ 'BUILDTYPE=Release', '-C', 'build' ]
+make: Entering directory '/root/compound-protocol/node_modules/usb/build'
+  CC(target) Release/obj.target/libusb/libusb/libusb/core.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/descriptor.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/hotplug.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/io.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/strerror.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/sync.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/os/poll_posix.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/os/threads_posix.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/os/linux_usbfs.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/os/linux_udev.o
+../libusb/libusb/os/linux_udev.c:40:10: fatal error: libudev.h: No such file or directory
+   40 | #include &lt;libudev.h&gt;
+      |          ^~~~~~~~~~~
+compilation terminated.
+make: *** [libusb.target.mk:150: Release/obj.target/libusb/libusb/libusb/os/linux_udev.o] Error 1
+make: Leaving directory '/root/compound-protocol/node_modules/usb/build'
+gyp ERR! build error
+gyp ERR! stack Error: `make` failed with exit code: 2
+gyp ERR! stack     at ChildProcess.onExit (/usr/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:194:23)
+gyp ERR! stack     at ChildProcess.emit (events.js:400:28)
+gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12)
+gyp ERR! System Linux 5.4.0-73-generic
+gyp ERR! command \&quot;/usr/bin/node\&quot; \&quot;/usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js\&quot; \&quot;rebuild\&quot;
+gyp ERR! cwd /root/compound-protocol/node_modules/usb
+Done in 55.61s.
+</code></pre>
+<p>What you will want to do is to make sure <code>libusb</code> and <code>libudev</code> are installed. To install them and fix the error, please see the <a href="../getting-started/installation.html#libusb-and-libudev">Installation section on libusb and libudev</a>.</p>
+<p><strong>NOTE</strong>: If you have run a command that invokes this error, it is expected for the command to display this error at least once after installing, so don't worry if you see it again! Simply try the command again, and it should run successfully.</p>
+<h2 id="error-callback-was-already-called"><a class="header" href="#error-callback-was-already-called"><code>Error: Callback was already called</code></a></h2>
+<p>This error occurs with Node 14+. To solve, install an earlier version of Node, preferably Node 13.x. To install, please see the <a href="../getting-started/installation.html#node-13x">Installation section on Node</a>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../troubleshooting/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../troubleshooting/compound-eureka.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../troubleshooting/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../troubleshooting/compound-eureka.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

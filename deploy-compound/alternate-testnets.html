@@ -1,0 +1,261 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Deploying to Alternate Testnets (e.g. Rinkeby) - A Thorough Guide to Deploying Compound Protocol</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../getting-started/configuration.html"><strong aria-hidden="true">2.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="../getting-started/script.html"><strong aria-hidden="true">2.3.</strong> Automate Setup via Script</a></li></ol></li><li class="chapter-item expanded "><a href="../build-compound.html"><strong aria-hidden="true">3.</strong> Building Compound Protocol</a></li><li class="chapter-item expanded "><a href="../deploy-compound/index.html"><strong aria-hidden="true">4.</strong> Deploying Compound Protocol</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../deploy-compound/deploy-via-eureka.html"><strong aria-hidden="true">4.1.</strong> Deploying via Eureka</a></li><li class="chapter-item expanded "><a href="../deploy-compound/alternate-testnets.html" class="active"><strong aria-hidden="true">4.2.</strong> Deploying to Alternate Testnets (e.g. Rinkeby)</a></li><li class="chapter-item expanded "><a href="../deploy-compound/tips.html"><strong aria-hidden="true">4.3.</strong> Tips</a></li></ol></li><li class="chapter-item expanded "><a href="../under-the-hood/index.html"><strong aria-hidden="true">5.</strong> Under the Hood</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../under-the-hood/core.html"><strong aria-hidden="true">5.1.</strong> Compound Core</a></li><li class="chapter-item expanded "><a href="../under-the-hood/governance.html"><strong aria-hidden="true">5.2.</strong> Compound Core + Governance</a></li></ol></li><li class="chapter-item expanded "><a href="../troubleshooting/index.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../troubleshooting/compound-protocol.html"><strong aria-hidden="true">6.1.</strong> compound-protocol</a></li><li class="chapter-item expanded "><a href="../troubleshooting/compound-eureka.html"><strong aria-hidden="true">6.2.</strong> compound-eureka</a></li></ol></li><li class="chapter-item expanded "><a href="../credits.html"><strong aria-hidden="true">7.</strong> Credits</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">A Thorough Guide to Deploying Compound Protocol</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="deploying-to-alternate-testnets-eg-rinkeby"><a class="header" href="#deploying-to-alternate-testnets-eg-rinkeby">Deploying to Alternate Testnets (e.g. Rinkeby)</a></h1>
+<p>To deploy to an alternate testnet, like Rinkeby, we have to be a little creative. Attempting to run <code>yarn eureka apply -n rinkeby ...</code> produces a deployment that appears to break because the emitted transactions are run out of order, suggesting it is undocumented for a reason.</p>
+<p>However, we have a working deployment setup for the <code>-n ropsten</code> switch! So, by modifying the switch to run all transactions and verify contracts on the Rinkeby network instead, we can accomplish a successful deployment to Rinkeby. Thus, our job changes to ensuring that transactions running off of the <code>-n ropsten</code> switch pass through a Rinkeby provider, and that transactions are verified off of the Rinkeby network when interfacing with Etherscan.</p>
+<p>Thankfully, <code>yarn eureka apply</code> checks for a <code>provider</code> environment variable, which will override the provider set! Thus, for Rinkeby, we may pass <code>provider=https://rinkeby-eth.compound.finance</code>. </p>
+<p>What about verifying contracts on Etherscan under the right network? Our solution for this is a little dirtier, and involves modifying Eureka itself. Open the file <code>./node_modules/@compound-finance/eureka/src/actor.mjs</code> for editing, browse to lines 264-298, and look at the function <code>doVerify</code>:</p>
+<pre><code class="language-js">  async function doVerify(contract, address, args, contractJson, constructorData) {
+    if (!ethereum.verificationOpts.etherscanApiKey) {
+      throw new Error(`Cannot verify contract without Etherscan API Key`);
+    }
+
+    let funcInfo = showFunc(contract, 'constructor', args);
+
+    if (dryRun) {
+      log(`[Dry run] Verifying contract ${contract} at ${address} with ${funcInfo}`);
+      return;
+    }
+
+    try {
+      log(`Verifying contract ${contract} at ${address} with ${funcInfo}`);
+
+      let {
+        verified,
+        url,
+        alreadyVerified
+      } = await Etherscan.verifyContract(contractJson, ethereum.network, ethereum.verificationOpts.etherscanApiKey, address, constructorData, verbose);
+
+      if (!verified) {
+        throw new Error(`Failed to verify contract ${contract}`);
+      }
+
+      if (alreadyVerified) {
+        log(`Contract ${contract} already verified at ${url}`);
+      } else {
+        log(`Contract ${contract} verified on Etherscan at ${url}`);
+      }
+    } catch (e) {
+      logError(`Error verifying \`${funcInfo}\`: ${e.toString()}`);
+      throw e;
+    }
+  }
+</code></pre>
+<p>What we want to target is the argument being passed <code>ethereum.network</code> to the <code>await Etherscan.verifyContract()</code> call, and hardcode it to our target testnet (in this case, Rinkeby). Therefore, to hardcode it to Rinkeby, we might modify line 283 like so:</p>
+<pre><code class="language-js">  async function doVerify(contract, address, args, contractJson, constructorData) {
+    if (!ethereum.verificationOpts.etherscanApiKey) {
+      throw new Error(`Cannot verify contract without Etherscan API Key`);
+    }
+
+    let funcInfo = showFunc(contract, 'constructor', args);
+
+    if (dryRun) {
+      log(`[Dry run] Verifying contract ${contract} at ${address} with ${funcInfo}`);
+      return;
+    }
+
+    try {
+      log(`Verifying contract ${contract} at ${address} with ${funcInfo}`);
+
+      let {
+        verified,
+        url,
+        alreadyVerified
+      } = await Etherscan.verifyContract(contractJson, 'rinkeby', ethereum.verificationOpts.etherscanApiKey, address, constructorData, verbose); // Hardcoding to 'rinkeby'
+
+      if (!verified) {
+        throw new Error(`Failed to verify contract ${contract}`);
+      }
+
+      if (alreadyVerified) {
+        log(`Contract ${contract} already verified at ${url}`);
+      } else {
+        log(`Contract ${contract} verified on Etherscan at ${url}`);
+      }
+    } catch (e) {
+      logError(`Error verifying \`${funcInfo}\`: ${e.toString()}`);
+      throw e;
+    }
+  }
+</code></pre>
+<p>Save the file, and all verifications should now run for Rinkeby. Finally, we run the deployment commands in much the same way as both, just with the <code>provider</code> included. Deploying just the core Compound contracts is thus:</p>
+<pre><code class="language-sh">etherscan=$ETHERSCAN_API_KEY provider=https://rinkeby-eth.compound.finance yarn eureka apply -n ropsten -b ./.build -c config/*.js -e eureka/{compound,testnet}.eureka
+</code></pre>
+<p>And with governance included:</p>
+<pre><code class="language-sh">etherscan=$ETHERSCAN_API_KEY provider=https://rinkeby-eth.compound.finance yarn eureka apply -n ropsten -b ./.build -c config/*.js -e eureka/{compound,testnet,testnet-gov}.eureka
+</code></pre>
+<p>It is important to note, of course, that the private key saved at <code>~/.ethereum/ropsten</code> will be used, not the one at <code>~/.ethereum/rinkeby</code>!</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../deploy-compound/deploy-via-eureka.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../deploy-compound/tips.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../deploy-compound/deploy-via-eureka.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../deploy-compound/tips.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
