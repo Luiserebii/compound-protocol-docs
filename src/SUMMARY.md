@@ -16,3 +16,4 @@
 - [Troubleshooting](./troubleshooting/README.md)
    - [compound-protocol](./troubleshooting/compound-protocol.md)
    - [compound-eureka](./troubleshooting/compound-eureka.md)
+- [Credits](./credits.md)

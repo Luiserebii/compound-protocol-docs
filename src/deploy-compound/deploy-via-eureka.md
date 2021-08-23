@@ -37,3 +37,5 @@ Deploying governance contracts with the core is as simple as adding `testnet-gov
 ```sh
 etherscan=$ETHERSCAN_API_KEY yarn eureka apply -n ropsten -b ./.build -c config/*.js -e eureka/{compound,testnet,testnet-gov}.eureka
 ```
+
+<script id="asciicast-bQ7Si8tPufmgpa1THC6up0o7k" src="https://asciinema.org/a/bQ7Si8tPufmgpa1THC6up0o7k.js" async></script>
